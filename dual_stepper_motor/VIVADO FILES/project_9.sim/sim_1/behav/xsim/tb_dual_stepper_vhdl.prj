@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_top.vhd" \
+"../../../../../Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/stepper_motor_ctrl.vhd" \
+"../../../../../Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/tb_dual_stepper.vhd" \
+
+# Do not sort compile order
+nosort

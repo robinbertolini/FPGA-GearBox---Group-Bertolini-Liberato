@@ -1,0 +1,4 @@
+Running: xsim.dir/tb_dual_stepper_behav/xsimk.exe -simmode gui -wdb tb_dual_stepper_behav.wdb -simrunnum 0 -socket 60094
+Design successfully loaded
+Design Loading Memory Usage: 10864 KB (Peak: 10864 KB)
+Design Loading CPU Usage: 77 ms
