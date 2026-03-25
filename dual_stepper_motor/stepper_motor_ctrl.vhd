@@ -1,6 +1,5 @@
 --------------------------------------------------------------------------------
 -- Entity   : stepper_motor_ctrl
--- Author   : (inspired by Prof. Philippe Velha's style)
 -- Purpose  : Single-channel stepper motor controller driven entirely by an FSM.
 --            Generates the 8-step half-step excitation sequence for a
 --            4-wire unipolar stepper motor (IN1..IN4).
@@ -38,16 +37,12 @@ end entity stepper_motor_ctrl;
 architecture rtl of stepper_motor_ctrl is
 
     ---------------------------------------------------------------------------
-    -- Timing: number of clock cycles between two consecutive steps
+    -- Timing constant (elaboration-time division, zero hardware cost)
     ---------------------------------------------------------------------------
-    constant CYCLES_PER_STEP : positive :=
-        CLK_FREQ_HZ / STEP_FREQ_HZ;               -- integer division, exact enough
+    constant CYCLES_PER_STEP : positive := CLK_FREQ_HZ / STEP_FREQ_HZ;
 
     ---------------------------------------------------------------------------
-    -- FSM state encoding
-    -- IDLE   : motor disabled, coils de-energised
-    -- STEPx  : half-step states 0..7 (8 states for smooth torque)
-    -- TICK   : one-cycle "pulse" that advances the step pointer
+    -- FSM state type  (IDLE + 8 half-step states)
     ---------------------------------------------------------------------------
     type fsm_state_t is (
         IDLE,
@@ -55,33 +50,18 @@ architecture rtl of stepper_motor_ctrl is
         STEP4, STEP5, STEP6, STEP7
     );
 
-    -- Half-step excitation table: (IN1, IN2, IN3, IN4)
-    -- Follows the standard 28BYJ-48 / generic 4-wire unipolar sequence
-    type coil_table_t is array (0 to 7) of std_logic_vector(3 downto 0);
-    constant HALF_STEP_TABLE : coil_table_t := (
-        "1000",   -- step 0
-        "1100",   -- step 1
-        "0100",   -- step 2
-        "0110",   -- step 3
-        "0010",   -- step 4
-        "0011",   -- step 5
-        "0001",   -- step 6
-        "1001"    -- step 7
-    );
-
     ---------------------------------------------------------------------------
-    -- Internal signals
+    -- Internal signals — each driven by exactly ONE process
     ---------------------------------------------------------------------------
-    signal state      : fsm_state_t := IDLE;
-    signal step_idx   : integer range 0 to 7 := 0;
+    signal state      : fsm_state_t := IDLE;          -- driven by p_fsm only
     signal tick_cnt   : integer range 0 to CYCLES_PER_STEP - 1 := 0;
-    signal tick_pulse : std_logic := '0';          -- one-cycle strobe
+    signal tick_pulse : std_logic := '0';              -- driven by p_tick only
 
 begin
 
     ---------------------------------------------------------------------------
-    -- Process 1 – Tick generator
-    -- Produces a one-cycle pulse every CYCLES_PER_STEP clocks.
+    -- Process 1 – Tick generator (registered)
+    -- Produces a single-cycle '1' pulse every CYCLES_PER_STEP clock edges.
     ---------------------------------------------------------------------------
     p_tick : process (clk)
     begin
@@ -102,30 +82,22 @@ begin
     end process p_tick;
 
     ---------------------------------------------------------------------------
-    -- Process 2 – FSM
-    -- Controls the step sequencer state machine.
+    -- Process 2 – FSM next-state logic (registered)
+    -- `state` is the ONLY signal written here.
     ---------------------------------------------------------------------------
     p_fsm : process (clk)
     begin
         if rising_edge(clk) then
             if rst = '1' then
-                state    <= IDLE;
-                step_idx <= 0;
-
+                state <= IDLE;
             else
                 case state is
 
-                    -- --------------------------------------------------------
                     when IDLE =>
-                        step_idx <= 0;
                         if enable = '1' then
                             state <= STEP0;
                         end if;
 
-                    -- --------------------------------------------------------
-                    -- Each STEPx state: hold coil pattern until tick fires,
-                    -- then advance to next step (direction-aware).
-                    -- --------------------------------------------------------
                     when STEP0 =>
                         if enable = '0' then
                             state <= IDLE;
@@ -199,30 +171,23 @@ begin
     end process p_fsm;
 
     ---------------------------------------------------------------------------
-    -- Process 3 – Step index decoder
-    -- Maps FSM state → integer index into the half-step table.
-    -- Purely combinational (no registered delay on coil outputs).
+    -- Process 3 – Moore output decoder (purely combinational)
+    -- Maps state -> coil pattern directly. No shared signals with other processes.
+    -- Half-step table: (IN1, IN2, IN3, IN4)
     ---------------------------------------------------------------------------
-    p_step_decode : process (state)
+    p_output : process (state)
     begin
         case state is
-            when STEP0  => step_idx <= 0;
-            when STEP1  => step_idx <= 1;
-            when STEP2  => step_idx <= 2;
-            when STEP3  => step_idx <= 3;
-            when STEP4  => step_idx <= 4;
-            when STEP5  => step_idx <= 5;
-            when STEP6  => step_idx <= 6;
-            when STEP7  => step_idx <= 7;
-            when others => step_idx <= 0;
+            when STEP0  => coils <= "1000";
+            when STEP1  => coils <= "1100";
+            when STEP2  => coils <= "0100";
+            when STEP3  => coils <= "0110";
+            when STEP4  => coils <= "0010";
+            when STEP5  => coils <= "0011";
+            when STEP6  => coils <= "0001";
+            when STEP7  => coils <= "1001";
+            when others => coils <= "0000";  -- IDLE: de-energise all coils
         end case;
-    end process p_step_decode;
-
-    ---------------------------------------------------------------------------
-    -- Output logic
-    -- When IDLE, all coils are de-energised (prevents heating at standstill).
-    ---------------------------------------------------------------------------
-    coils <= HALF_STEP_TABLE(step_idx) when state /= IDLE
-             else "0000";
+    end process p_output;
 
 end architecture rtl;

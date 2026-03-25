@@ -1,6 +1,5 @@
 --------------------------------------------------------------------------------
 -- Entity   : dual_stepper_top
--- Author   : (inspired by Prof. Philippe Velha's style)
 -- Purpose  : Top-level wrapper for two independent stepper motor controllers.
 --            Motor 1 → Pmod JA[1..4] (IN1..IN4)
 --            Motor 2 → Pmod JB[1..4] (IN1..IN4)
