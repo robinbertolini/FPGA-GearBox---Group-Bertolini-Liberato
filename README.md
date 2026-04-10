@@ -30,7 +30,7 @@ Version Control: Git/GitHub
 ## 🚀 Getting Started
 ### Prerequisites
 
-FPGA development board (specify model if applicable)
+FPGA development board 
 
 VHDL simulation/development environment
 
