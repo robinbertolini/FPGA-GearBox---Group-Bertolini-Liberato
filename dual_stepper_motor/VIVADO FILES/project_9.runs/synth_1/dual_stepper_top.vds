@@ -3,12 +3,12 @@
 # SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Wed Mar 25 22:20:59 2026
-# Process ID         : 15940
-# Current directory  : C:/Users/robin/project_9/project_9.runs/synth_1
+# Start of session at: Thu Mar 26 15:50:42 2026
+# Process ID         : 26344
+# Current directory  : C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/synth_1
 # Command line       : vivado.exe -log dual_stepper_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dual_stepper_top.tcl
-# Log file           : C:/Users/robin/project_9/project_9.runs/synth_1/dual_stepper_top.vds
-# Journal file       : C:/Users/robin/project_9/project_9.runs/synth_1\vivado.jou
+# Log file           : C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/synth_1/dual_stepper_top.vds
+# Journal file       : C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/synth_1\vivado.jou
 # Running On         : PcBobin
 # Platform           : Windows Server 2016 or Windows 10
 # Operating System   : 26200
@@ -17,48 +17,53 @@
 # CPU Physical cores : 14
 # CPU Logical cores  : 20
 # Host memory        : 16788 MB
-# Swap memory        : 8321 MB
-# Total Virtual      : 25110 MB
-# Available Virtual  : 5348 MB
+# Swap memory        : 9205 MB
+# Total Virtual      : 25993 MB
+# Available Virtual  : 4363 MB
 #-----------------------------------------------------------
 source dual_stepper_top.tcl -notrace
-create_project: Time (s): cpu = 00:00:42 ; elapsed = 00:00:34 . Memory (MB): peak = 595.008 ; gain = 219.754
+create_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:10 . Memory (MB): peak = 595.141 ; gain = 220.250
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.srcs/utils_1/imports/synth_1/dual_stepper_top.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.srcs/utils_1/imports/synth_1/dual_stepper_top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top dual_stepper_top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 30944
+INFO: [Synth 8-7075] Helper process launched with PID 12452
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 1330.223 ; gain = 539.809
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1335.324 ; gain = 543.852
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'dual_stepper_top' [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_top.vhd:42]
 	Parameter CLK_FREQ_HZ bound to: 100000000 - type: integer 
-	Parameter STEP_FREQ_HZ bound to: 100 - type: integer 
+	Parameter STEP_FREQ_HZ bound to: 1000 - type: integer 
 INFO: [Synth 8-3491] module 'stepper_motor_ctrl' declared at 'C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/stepper_motor_ctrl.vhd:23' bound to instance 'U_MOTOR1' of component 'stepper_motor_ctrl' [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_top.vhd:67]
 INFO: [Synth 8-638] synthesizing module 'stepper_motor_ctrl' [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/stepper_motor_ctrl.vhd:37]
 	Parameter CLK_FREQ_HZ bound to: 100000000 - type: integer 
-	Parameter STEP_FREQ_HZ bound to: 100 - type: integer 
+	Parameter STEP_FREQ_HZ bound to: 1000 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'stepper_motor_ctrl' (0#1) [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/stepper_motor_ctrl.vhd:37]
 	Parameter CLK_FREQ_HZ bound to: 100000000 - type: integer 
-	Parameter STEP_FREQ_HZ bound to: 100 - type: integer 
+	Parameter STEP_FREQ_HZ bound to: 1000 - type: integer 
 INFO: [Synth 8-3491] module 'stepper_motor_ctrl' declared at 'C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/stepper_motor_ctrl.vhd:23' bound to instance 'U_MOTOR2' of component 'stepper_motor_ctrl' [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_top.vhd:84]
 INFO: [Synth 8-256] done synthesizing module 'dual_stepper_top' (0#1) [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_top.vhd:42]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:29 ; elapsed = 00:00:34 . Memory (MB): peak = 1448.531 ; gain = 658.117
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1451.023 ; gain = 659.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 1448.531 ; gain = 658.117
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1451.023 ; gain = 659.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 1448.531 ; gain = 658.117
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1451.023 ; gain = 659.551
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1448.531 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1451.023 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -69,26 +74,28 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/dual_stepper_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1498.867 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1518.926 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1498.867 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1518.926 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:03 ; elapsed = 00:01:12 . Memory (MB): peak = 1498.867 ; gain = 708.453
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1518.926 ; gain = 727.453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:03 ; elapsed = 00:01:12 . Memory (MB): peak = 1498.867 ; gain = 708.453
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1518.926 ; gain = 727.453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:03 ; elapsed = 00:01:12 . Memory (MB): peak = 1498.867 ; gain = 708.453
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1518.926 ; gain = 727.453
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'stepper_motor_ctrl'
 ---------------------------------------------------------------------------------------------------
@@ -106,7 +113,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'stepp
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'stepper_motor_ctrl'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:04 ; elapsed = 00:01:13 . Memory (MB): peak = 1498.867 ; gain = 708.453
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1518.926 ; gain = 727.453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -136,25 +143,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:14 ; elapsed = 00:01:24 . Memory (MB): peak = 1498.867 ; gain = 708.453
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1518.926 ; gain = 727.453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:38 ; elapsed = 00:01:51 . Memory (MB): peak = 1641.832 ; gain = 851.418
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1647.199 ; gain = 855.727
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:38 ; elapsed = 00:01:52 . Memory (MB): peak = 1662.309 ; gain = 871.895
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1667.656 ; gain = 876.184
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:38 ; elapsed = 00:01:52 . Memory (MB): peak = 1663.105 ; gain = 872.691
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1668.438 ; gain = 876.965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -172,37 +179,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -221,38 +228,37 @@ Report Cell Usage:
 |1     |BUFG   |     1|
 |2     |CARRY4 |    10|
 |3     |LUT1   |     2|
-|4     |LUT2   |     2|
-|5     |LUT3   |     8|
-|6     |LUT4   |    24|
-|7     |LUT5   |     8|
-|8     |LUT6   |     4|
-|9     |FDRE   |    58|
-|10    |FDSE   |     2|
-|11    |IBUF   |     6|
-|12    |OBUF   |     8|
+|4     |LUT3   |    10|
+|5     |LUT4   |    18|
+|6     |LUT5   |     8|
+|7     |LUT6   |     6|
+|8     |FDRE   |    52|
+|9     |FDSE   |     2|
+|10    |IBUF   |     6|
+|11    |OBUF   |     8|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:57 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:21 ; elapsed = 00:02:04 . Memory (MB): peak = 1901.621 ; gain = 1060.871
-Synthesis Optimization Complete : Time (s): cpu = 00:01:58 ; elapsed = 00:02:13 . Memory (MB): peak = 1901.621 ; gain = 1111.207
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:34 . Memory (MB): peak = 1906.949 ; gain = 1047.574
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1906.949 ; gain = 1115.477
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1910.867 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1916.102 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1914.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1919.770 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: d48ac44
+Synth Design complete | Checksum: 146d295a
 INFO: [Common 17-83] Releasing license: Synthesis
-23 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+29 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:13 ; elapsed = 00:03:04 . Memory (MB): peak = 1914.559 ; gain = 1319.551
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1914.559 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/robin/project_9/project_9.runs/synth_1/dual_stepper_top.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:43 . Memory (MB): peak = 1919.770 ; gain = 1314.430
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1919.770 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/synth_1/dual_stepper_top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file dual_stepper_top_utilization_synth.rpt -pb dual_stepper_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Mar 25 22:25:00 2026...
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 26 15:51:42 2026...

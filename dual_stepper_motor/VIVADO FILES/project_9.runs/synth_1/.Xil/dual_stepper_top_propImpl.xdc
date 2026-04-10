@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_basys3.xdc rfile:../../../../Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_basys3.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/dual_stepper_basys3.xdc rfile:../../../../dual_stepper_basys3.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports clk]
 set_property src_info {type:XDC file:1 line:11 export:INPUT save:INPUT read:READ} [current_design]

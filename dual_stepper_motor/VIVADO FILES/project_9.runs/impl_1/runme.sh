@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/robin/project_9/project_9.runs/impl_1'
+HD_PWD='C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

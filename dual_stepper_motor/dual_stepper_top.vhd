@@ -24,7 +24,7 @@ entity dual_stepper_top is
         -- │  SINGLE POINT OF TRUTH – change only this value │
         -- └─────────────────────────────────────────────────┘
         CLK_FREQ_HZ  : positive := 100_000_000;   -- Basys3: 100 MHz
-        STEP_FREQ_HZ : positive := 100             -- 100 steps/s per motor
+        STEP_FREQ_HZ : positive := 1000             -- 100 steps/s per motor
     );
     port (
         clk   : in  std_logic;                     -- 100 MHz on-board oscillator

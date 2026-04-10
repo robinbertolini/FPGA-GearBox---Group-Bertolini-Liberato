@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/Users/robin/project_9/project_9.runs/impl_1/dual_stepper_top.tcl"
+  variable script "C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/impl_1/dual_stepper_top.tcl"
   variable category "vivado_impl"
 }
 
@@ -97,8 +97,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {HDL 9-1061} -limit 100000
-set_msg_config -id {HDL 9-1654} -limit 100000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 
@@ -112,10 +110,11 @@ set rc [catch {
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param general.usePosixSpawnForFork 1
   set_param chipscope.maxJobs 5
-  set_param synth.incrementalSynthesisCache C:/Users/robin/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-31368-PcBobin/incrSyn
+  set_param synth.incrementalSynthesisCache {C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/.Xil/Vivado-4044-PcBobin/incrSyn}
+  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 20  }
   open_checkpoint dual_stepper_top_routed.dcp
-  set_property webtalk.parent_dir C:/Users/robin/project_9/project_9.cache/wt [current_project]
+  set_property webtalk.parent_dir {C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.cache/wt} [current_project]
 set_property TOP dual_stepper_top [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }

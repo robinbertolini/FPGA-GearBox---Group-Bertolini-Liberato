@@ -5,4 +5,14 @@ Running: C:/AMDDesignTools/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture rtl of entity xil_defaultlib.stepper_motor_ctrl [\stepper_motor_ctrl(clk_freq_hz=...]
+Compiling architecture structural of entity xil_defaultlib.dual_stepper_top [\dual_stepper_top(clk_freq_hz=10...]
+Compiling architecture sim of entity xil_defaultlib.tb_dual_stepper
+Built simulation snapshot tb_dual_stepper_behav
