@@ -1,0 +1,10 @@
+v 4
+file . ".\tb_dual_stepper.vhd" "c11bae65133ba6b6e21b1d11c2d06451f463241b" "20260325204710.310":
+  entity tb_dual_stepper at 20( 978) + 0 on 15;
+  architecture sim of tb_dual_stepper at 28( 1163) + 0 on 16;
+file . ".\dual_stepper_top.vhd" "afc8c8c5f1d105a54329537ab39ff6394288057d" "20260325204700.718":
+  entity dual_stepper_top at 18( 699) + 0 on 11;
+  architecture structural of dual_stepper_top at 42( 1881) + 0 on 12;
+file . ".\stepper_motor_ctrl.vhd" "4098fcadc456afd6f16207f649315397c4d5fb5b" "20260325204706.003":
+  entity stepper_motor_ctrl at 19( 865) + 0 on 13;
+  architecture rtl of stepper_motor_ctrl at 37( 1386) + 0 on 14;
