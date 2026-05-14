@@ -1,0 +1,10 @@
+vhdl xpm  \
+"C:/AMDDesignTools/2025.2/Vivado/data/ip/xpm/xpm_VCOMP.vhd" \
+
+vhdl xil_defaultlib  \
+"../../../../dual_stepper_top.vhd" \
+"../../../../stepper_motor_ctrl.vhd" \
+"../../../../tb_dual_stepper.vhd" \
+
+# Do not sort compile order
+nosort

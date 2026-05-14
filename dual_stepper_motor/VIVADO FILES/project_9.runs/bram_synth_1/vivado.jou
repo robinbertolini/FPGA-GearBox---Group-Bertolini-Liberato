@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Apr 14 10:13:54 2026
+# Process ID         : 31172
+# Current directory  : C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/bram_synth_1
+# Command line       : vivado.exe -log bram.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bram.tcl
+# Log file           : C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/bram_synth_1/bram.vds
+# Journal file       : C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/dual_stepper_motor/VIVADO FILES/project_9.runs/bram_synth_1\vivado.jou
+# Running On         : PcBobin
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i9-13900H
+# CPU Frequency      : 2995 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16788 MB
+# Swap memory        : 7516 MB
+# Total Virtual      : 24304 MB
+# Available Virtual  : 5006 MB
+#-----------------------------------------------------------
+source bram.tcl -notrace
