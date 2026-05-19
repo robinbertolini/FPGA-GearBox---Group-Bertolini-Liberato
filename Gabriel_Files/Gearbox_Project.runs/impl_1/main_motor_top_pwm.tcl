@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/main_motor_top_pwm.tcl"
+  variable script "C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.runs/impl_1/main_motor_top_pwm.tcl"
   variable category "vivado_impl"
 }
 
@@ -109,11 +109,12 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param general.usePosixSpawnForFork 1
-  set_param chipscope.maxJobs 4
+  set_param chipscope.maxJobs 5
+  set_param synth.incrementalSynthesisCache C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/.Xil/Vivado-2300-PcBobin/incrSyn
   set_param xicom.use_bs_reader 1
-  set_param runs.launchOptions { -jobs 8  }
+  set_param runs.launchOptions { -jobs 20  }
   open_checkpoint main_motor_top_pwm_routed.dcp
-  set_property webtalk.parent_dir {C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.cache/wt} [current_project]
+  set_property webtalk.parent_dir C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.cache/wt [current_project]
 set_property TOP main_motor_top_pwm [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }

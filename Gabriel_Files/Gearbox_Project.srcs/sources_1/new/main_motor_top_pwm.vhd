@@ -5,34 +5,31 @@ use IEEE.NUMERIC_STD.ALL;
 entity main_motor_top_pwm is
     Port (
         clk   : in  STD_LOGIC;
-        btnC  : in  STD_LOGIC; -- Neutral
-        btnU  : in  STD_LOGIC; -- Gear 1
-        btnL  : in  STD_LOGIC; -- Gear 4
-        btnR  : in  STD_LOGIC; -- Gear 2
-        btnD  : in  STD_LOGIC; -- Gear 3
-        sw    : in  STD_LOGIC_VECTOR(15 downto 0); -- sw(15) is now RESET
+        btnC  : in  STD_LOGIC;  -- Neutral
+        btnU  : in  STD_LOGIC;  -- Gear 1 (arrow up)
+        btnL  : in  STD_LOGIC;  -- Gear 2 (arrow left)
+        btnR  : in  STD_LOGIC;  -- Gear 4 (arrow right)
+        btnD  : in  STD_LOGIC;  -- Gear 3 (arrow down)
+        sw    : in  STD_LOGIC_VECTOR(15 downto 0); -- sw(15) is RESET
         led   : out STD_LOGIC_VECTOR(3 downto 0);
         JA    : out STD_LOGIC_VECTOR(3 downto 2);
         JB    : out STD_LOGIC_VECTOR(3 downto 0);
-        JC    : out STD_LOGIC_VECTOR(3 downto 0)
+        JC    : out STD_LOGIC_VECTOR(3 downto 0);
+        seg   : out STD_LOGIC_VECTOR(6 downto 0);  -- 7-seg segments (active low)
+        an    : out STD_LOGIC_VECTOR(3 downto 0);  -- anodes (active low)
+        dp    : out STD_LOGIC                      -- decimal point (active low)
     );
 end main_motor_top_pwm;
 
 architecture rtl of main_motor_top_pwm is
 
-    ----------------------------------------------------------------------------
-    -- TUNING PARAMETERS (CHANGE THESE TO FINE-TUNE ANGLES)
-    ----------------------------------------------------------------------------
-    -- STEPS_X: The distance to move AWAY from the wall after calibration to 
-    -- reach the Neutral (center) position. 
-    constant STEPS_X : integer := 1500; 
-
-    -- STEPS_Y: The distance for a 30-degree gear shift from Neutral.
-    -- (30/360) * 4096 total steps = ~341 steps.
-    constant STEPS_Y : integer := 341; 
-    ----------------------------------------------------------------------------
-
-    constant GLOBAL_CALIB_DIR : std_logic := '0'; 
+    -- TUNING PARAMETERS
+    constant STEPS_X : integer := 1500;
+    -- Passi per salita (come prima)
+constant STEPS_Y : integer := 450;
+-- Passi per discesa (dimezzati)
+constant STEPS_Y_DOWN : integer := 50;   -- 50 it should be enogh ==> before it was half the STEPS_Y
+    constant GLOBAL_CALIB_DIR : std_logic := '1';
 
     component stepper_position_controller is
         port (
@@ -54,8 +51,12 @@ architecture rtl of main_motor_top_pwm is
     signal current_gear : integer range 0 to 4 := 0;
     signal master_reset : std_logic;
 
+    -- 7-segment scanning
+    signal digit_scan_counter : integer range 0 to 99999 := 0;
+    signal digit_select       : integer range 0 to 3 := 0;
+
 begin
-    -- Use SW15 as a manual reset trigger
+    -- SW15 as manual reset
     master_reset <= sw(15);
 
     led(0) <= s1_calibrated;
@@ -63,23 +64,26 @@ begin
     led(2) <= s1_busy;
     led(3) <= s2_busy;
 
-    -- DC Motor (SW0)
-    JA(2) <= '1'; 
-    JA(3) <= sw(0); 
+    -- DC Motor control
+    JA(2) <= '1';
+    JA(3) <= sw(0);
 
-    -- Start Pulse for Calibration
+    -- Startup auto-calibration pulse (1,000,000 cycles = 10 ms @ 100 MHz)
     process(clk)
         variable counter : integer := 0;
-        variable fired : boolean := false;
+        variable fired   : boolean := false;
     begin
         if rising_edge(clk) then
             if master_reset = '1' then
-                counter := 0; fired := false; start_calib <= '0';
-            elsif fired = false then
-                if counter < 1000000 then 
+                counter := 0;
+                fired   := false;
+                start_calib <= '0';
+            elsif not fired then
+                if counter < 1000000 then
                     counter := counter + 1;
                 else
-                    start_calib <= '1'; fired := true;
+                    start_calib <= '1';
+                    fired := true;
                 end if;
             else
                 start_calib <= '0';
@@ -97,42 +101,112 @@ begin
                    target_position => s2_target, invert_direction => not GLOBAL_CALIB_DIR,
                    calibrated => s2_calibrated, busy => s2_busy, coils => JC );
 
-    -- Button-based Gear Selection
+    -- Updated button mapping:
+    --   btnU -> gear 1
+    --   btnL -> gear 2
+    --   btnR -> gear 4
+    --   btnD -> gear 3
+    --   btnC -> gear 0 (neutral)
     process(clk)
-    begin
-        if rising_edge(clk) then
-            if s1_calibrated = '1' and s2_calibrated = '1' then
-                if btnC = '1' then current_gear <= 0; -- Neutral
-                elsif btnU = '1' then current_gear <= 1;
-                elsif btnR = '1' then current_gear <= 2;
-                elsif btnD = '1' then current_gear <= 3;
-                elsif btnL = '1' then current_gear <= 4;
-                end if;
-            end if;
+begin
+    if rising_edge(clk) then
+        if s1_calibrated = '1' and s2_calibrated = '1' then
+            case current_gear is
+                when 1 => -- Entrambi SU
+                    s1_target <= STEPS_X + STEPS_Y;
+                    s2_target <= STEPS_X + STEPS_Y;
+                when 2 => -- S1 SU, S2 GIU'
+                    s1_target <= STEPS_X + STEPS_Y;
+                    s2_target <= STEPS_X - STEPS_Y_DOWN;   -- modificato
+                when 3 => -- Entrambi GIU'
+                    s1_target <= STEPS_X - STEPS_Y_DOWN;   -- modificato
+                    s2_target <= STEPS_X - STEPS_Y_DOWN;   -- modificato
+                when 4 => -- S1 GIU', S2 SU
+                    s1_target <= STEPS_X - STEPS_Y_DOWN;   -- modificato
+                    s2_target <= STEPS_X + STEPS_Y;
+                when others => -- Folle (neutro)
+                    s1_target <= STEPS_X;
+                    s2_target <= STEPS_X;
+            end case;
+        else
+            s1_target <= 0;
+            s2_target <= 0;
         end if;
-    end process;
+    end if;
+end process;
 
-    -- Target Position Mapping (Using X to return from wall, Y to shift)
+    -- Target position calculation
     process(clk)
     begin
         if rising_edge(clk) then
             if s1_calibrated = '1' and s2_calibrated = '1' then
                 case current_gear is
-                    when 1 => -- Gear 1: Both "Up" 30 deg from center
-                        s1_target <= STEPS_X + STEPS_Y; s2_target <= STEPS_X + STEPS_Y;
-                    when 2 => -- Gear 2: S1 Up, S2 Down
-                        s1_target <= STEPS_X + STEPS_Y; s2_target <= STEPS_X - STEPS_Y;
-                    when 3 => -- Gear 3: Both Down
-                        s1_target <= STEPS_X - STEPS_Y; s2_target <= STEPS_X - STEPS_Y;
-                    when 4 => -- Gear 4: S1 Down, S2 Up
-                        s1_target <= STEPS_X - STEPS_Y; s2_target <= STEPS_X + STEPS_Y;
-                    when others => -- Neutral (Exactly at return angle X)
-                        s1_target <= STEPS_X; s2_target <= STEPS_X;
+                    when 1 =>
+                        s1_target <= STEPS_X + STEPS_Y;
+                        s2_target <= STEPS_X + STEPS_Y;
+                    when 2 =>
+                        s1_target <= STEPS_X + STEPS_Y;
+                        s2_target <= STEPS_X - STEPS_Y;
+                    when 3 =>
+                        s1_target <= STEPS_X - STEPS_Y;
+                        s2_target <= STEPS_X - STEPS_Y;
+                    when 4 =>
+                        s1_target <= STEPS_X - STEPS_Y;
+                        s2_target <= STEPS_X + STEPS_Y;
+                    when others =>  -- Neutral
+                        s1_target <= STEPS_X;
+                        s2_target <= STEPS_X;
                 end case;
             else
-                -- During calibration, we stay at 0 (the wall)
-                s1_target <= 0; s2_target <= 0;
+                s1_target <= 0;
+                s2_target <= 0;
             end if;
         end if;
     end process;
+
+    ----------------------------------------------------------------------------
+    -- 7-SEGMENT DISPLAY (gear on rightmost digit)
+    ----------------------------------------------------------------------------
+    -- Digit scanning (1 kHz refresh)
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if digit_scan_counter = 99999 then
+                digit_scan_counter <= 0;
+                if digit_select = 3 then
+                    digit_select <= 0;
+                else
+                    digit_select <= digit_select + 1;
+                end if;
+            else
+                digit_scan_counter <= digit_scan_counter + 1;
+            end if;
+        end if;
+    end process;
+
+    -- Anode control
+    an <= "1110" when digit_select = 0 else
+          "1101" when digit_select = 1 else
+          "1011" when digit_select = 2 else
+          "0111";
+
+    -- Segment decode: only digit 0 shows gear, others blank
+    process(digit_select, current_gear)
+    begin
+        if digit_select = 0 then
+            case current_gear is
+                when 0 => seg <= "1000000";  -- 0
+                when 1 => seg <= "1111001";  -- 1
+                when 2 => seg <= "0100100";  -- 2
+                when 3 => seg <= "0110000";  -- 3
+                when 4 => seg <= "0011001";  -- 4
+                when others => seg <= "1111111";
+            end case;
+        else
+            seg <= "1111111";
+        end if;
+    end process;
+
+    dp <= '1';   -- decimal point off
+
 end rtl;

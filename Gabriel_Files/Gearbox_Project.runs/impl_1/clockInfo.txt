@@ -1,7 +1,7 @@
 -------------------------------------
 | Tool Version : Vivado v.2025.2
-| Date         : Thu May 14 17:22:09 2026
-| Host         : DESKTOP-UFF887S
+| Date         : Tue May 19 17:26:18 2026
+| Host         : PcBobin
 | Design       : design_1
 | Device       : xc7a35t-cpg236-1--
 -------------------------------------
