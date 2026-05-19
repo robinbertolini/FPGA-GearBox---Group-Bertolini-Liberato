@@ -7,4 +7,4 @@ REM Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 REM Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 REM
 
-vivado -log dc_driver_pwm.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source dc_driver_pwm.tcl
+vivado -log main_motor_top_pwm.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source main_motor_top_pwm.tcl

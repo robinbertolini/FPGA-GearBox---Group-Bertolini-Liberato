@@ -26,7 +26,7 @@ eval( EAInclude(ISEJScriptLib) );
 // pre-commands:
 ISETouchFile( "write_bitstream", "begin" );
 ISEStep( "vivado",
-         "-log dc_driver_pwm.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source dc_driver_pwm.tcl -notrace" );
+         "-log main_motor_top_pwm.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source main_motor_top_pwm.tcl -notrace" );
 
 
 

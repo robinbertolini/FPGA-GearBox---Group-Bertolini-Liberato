@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/Gabriel Liberato/Gearbox_Project/Gearbox_Project.runs/impl_1'
+HD_PWD='C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -43,6 +43,6 @@ EAStep()
 
 # pre-commands:
 /bin/touch .write_bitstream.begin.rst
-EAStep vivado -log dc_driver_pwm.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source dc_driver_pwm.tcl -notrace
+EAStep vivado -log main_motor_top_pwm.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source main_motor_top_pwm.tcl -notrace
 
 

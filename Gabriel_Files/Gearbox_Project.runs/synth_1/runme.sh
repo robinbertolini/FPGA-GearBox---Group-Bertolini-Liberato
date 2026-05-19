@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/Gabriel Liberato/Gearbox_Project/Gearbox_Project.runs/synth_1'
+HD_PWD='C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log dc_driver_pwm.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source dc_driver_pwm.tcl
+EAStep vivado -log main_motor_top_pwm.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source main_motor_top_pwm.tcl

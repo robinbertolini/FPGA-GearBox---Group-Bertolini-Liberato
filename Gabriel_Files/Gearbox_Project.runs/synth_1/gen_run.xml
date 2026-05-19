@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1778760682" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/main_motor_top_pwm.dcp">
-  <File Type="PA-TCL" Name="dc_driver_pwm.tcl"/>
-  <File Type="REPORTS-TCL" Name="dc_driver_pwm_reports.tcl"/>
-  <File Type="RDS-RDS" Name="dc_driver_pwm.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="dc_driver_pwm_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="dc_driver_pwm_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="dc_driver_pwm_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="dc_driver_pwm.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="dc_driver_pwm_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="dc_driver_pwm_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1778772015" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/main_motor_top_pwm.dcp">
+  <File Type="PA-TCL" Name="main_motor_top_pwm.tcl"/>
+  <File Type="REPORTS-TCL" Name="main_motor_top_pwm_reports.tcl"/>
+  <File Type="RDS-RDS" Name="main_motor_top_pwm.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="main_motor_top_pwm_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="main_motor_top_pwm_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="main_motor_top_pwm_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="main_motor_top_pwm.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="main_motor_top_pwm_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="main_motor_top_pwm_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/stepper_position_controller.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/stepper_motor_ctrl.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/main_motor_top_pwm.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -34,11 +20,25 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/pwm_generator.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/dc_driver_pwm.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/stepper_position_controller.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/main_motor_top_pwm.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -46,8 +46,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="dc_driver_pwm"/>
-      <Option Name="TopAutoSet" Val="TRUE"/>
+      <Option Name="TopModule" Val="main_motor_top_pwm"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
@@ -77,9 +76,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

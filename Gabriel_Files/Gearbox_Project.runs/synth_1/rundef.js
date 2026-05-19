@@ -24,7 +24,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log dc_driver_pwm.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source dc_driver_pwm.tcl" );
+         "-log main_motor_top_pwm.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source main_motor_top_pwm.tcl" );
 
 
 
