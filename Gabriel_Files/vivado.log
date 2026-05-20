@@ -2017,3 +2017,7 @@ WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-f
 WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [C:\Users\robin\Documents\GitHub\FPGA-GearBox---Group-Bertolini-Liberato\Gabriel_Files\Gearbox_Project.srcs\sources_1\new\stepper_motor_ctrl.vhd:]
 WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [C:\Users\robin\Documents\GitHub\FPGA-GearBox---Group-Bertolini-Liberato\Gabriel_Files\Gearbox_Project.srcs\sources_1\new\stepper_motor_ctrl.vhd:]
 WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [C:\Users\robin\Documents\GitHub\FPGA-GearBox---Group-Bertolini-Liberato\Gabriel_Files\Gearbox_Project.srcs\sources_1\new\stepper_motor_ctrl.vhd:]
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue May 19 17:29:37 2026...

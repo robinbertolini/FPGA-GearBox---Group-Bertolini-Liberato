@@ -1,286 +1,197 @@
---------------------------------------------------------------------------------
--- Entity   : stepper_motor_ctrl
--- Purpose  : Variable-speed stepper motor controller using FSM sequencing.
---------------------------------------------------------------------------------
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity stepper_motor_ctrl is
+entity stepper_position_controller is
     generic (
-        CLK_FREQ_HZ : positive := 100_000_000
+        CLK_FREQ_HZ        : positive := 100_000_000;
+        HOMING_DIR         : std_logic := '1';  -- '1' = calibra verso il muro
+        POST_HOMING_OFFSET : integer   := 0     -- passi da fare indietro dopo il muro
     );
     port (
-        clk    : in  std_logic;
-        rst    : in  std_logic;
-
-        enable : in  std_logic;
-        dir    : in  std_logic;
-
-        -- 0 = slowest
-        -- 255 = fastest
-        speed  : in  unsigned(7 downto 0);
-
-        coils  : out std_logic_vector(3 downto 0)
+        clk               : in  std_logic;
+        rst               : in  std_logic;
+        start_calibration : in  std_logic;
+        target_position   : in  integer;
+        invert_direction  : in  std_logic;
+        calibrated        : out std_logic;
+        busy              : out std_logic;
+        coils             : out std_logic_vector(3 downto 0)
     );
-end entity stepper_motor_ctrl;
+end entity;
 
-architecture rtl of stepper_motor_ctrl is
+architecture rtl of stepper_position_controller is
+    constant HOMING_STEP_HZ   : integer := 400;   -- velocità homing
+    constant RUN_STEP_HZ      : integer := 500;   -- velocità normale
+    constant REQ_HOMING_STEPS : integer := 2000;  -- passi per raggiungere il muro
 
-    ----------------------------------------------------------------------------
-    -- VARIABLE STEP TIMING
-    ----------------------------------------------------------------------------
-    signal cycles_per_step : integer := 100000000;
+    type state_t is (IDLE, CALIB_MOVE, CALIB_WAIT, POST_HOMING_MOVE, POST_HOMING_WAIT, READY, MOVE);
+    signal state : state_t := IDLE;
 
-    ----------------------------------------------------------------------------
-    -- FSM STATES
-    ----------------------------------------------------------------------------
-    type fsm_state_t is (
-        IDLE,
-        STEP0, STEP1, STEP2, STEP3,
-        STEP4, STEP5, STEP6, STEP7
-    );
+    type step_state_t is (S0,S1,S2,S3,S4,S5,S6,S7);
+    signal step_state : step_state_t := S0;
 
-    ----------------------------------------------------------------------------
-    -- INTERNAL SIGNALS
-    ----------------------------------------------------------------------------
-    signal state      : fsm_state_t := IDLE;
-    signal tick_cnt   : integer := 0;
-    signal tick_pulse : std_logic := '0';
+    signal current_pos  : integer := 0;
+    signal tick_cnt     : integer := 0;
+    signal wait_cnt     : integer := 0;
+    signal homing_steps : integer := 0;
+    signal backoff_steps: integer := 0;   -- contatore passi post-homing
 
+    signal calibrated_i : std_logic := '0';
 begin
+    calibrated <= calibrated_i;
 
-    ----------------------------------------------------------------------------
-    -- SPEED CONTROL
-    --
-    -- speed 0   -> 1 step/sec
-    -- speed 255 -> 200 step/sec
-    ----------------------------------------------------------------------------
-    p_speed : process(speed)
-        variable freq : integer;
-    begin
-
-        freq := 1 + (to_integer(speed) * 199) / 255;
-
-        cycles_per_step <= CLK_FREQ_HZ / freq;
-
+    process(state) begin
+        if state = READY then busy <= '0'; else busy <= '1'; end if;
     end process;
 
-    ----------------------------------------------------------------------------
-    -- TICK GENERATOR
-    ----------------------------------------------------------------------------
-    p_tick : process(clk)
+    process(clk)
+        variable act_dir : std_logic;
+        variable log_dir : std_logic;
     begin
         if rising_edge(clk) then
-
-            if rst = '1' or enable = '0' then
-
-                tick_cnt   <= 0;
-                tick_pulse <= '0';
-
-            else
-
-                if tick_cnt >= cycles_per_step - 1 then
-
-                    tick_cnt   <= 0;
-                    tick_pulse <= '1';
-
-                else
-
-                    tick_cnt   <= tick_cnt + 1;
-                    tick_pulse <= '0';
-
-                end if;
-
-            end if;
-
-        end if;
-    end process p_tick;
-
-    ----------------------------------------------------------------------------
-    -- FSM
-    ----------------------------------------------------------------------------
-    p_fsm : process(clk)
-    begin
-        if rising_edge(clk) then
-
             if rst = '1' then
-
                 state <= IDLE;
-
+                calibrated_i <= '0';
             else
-
                 case state is
 
-                    ----------------------------------------------------------------
                     when IDLE =>
-
-                        if enable = '1' then
-                            state <= STEP0;
+                        if start_calibration = '1' then
+                            state <= CALIB_MOVE;
+                            tick_cnt <= 0;
+                            homing_steps <= 0;
                         end if;
 
-                    ----------------------------------------------------------------
-                    when STEP0 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP1;
+                    -- Movimento verso il muro (homing)
+                    when CALIB_MOVE =>
+                        if tick_cnt >= (CLK_FREQ_HZ / HOMING_STEP_HZ) then
+                            tick_cnt <= 0;
+                            act_dir := HOMING_DIR xor invert_direction;
+                            if act_dir = '1' then
+                                case step_state is
+                                    when S0=>step_state<=S1; when S1=>step_state<=S2; when S2=>step_state<=S3; when S3=>step_state<=S4;
+                                    when S4=>step_state<=S5; when S5=>step_state<=S6; when S6=>step_state<=S7; when others=>step_state<=S0;
+                                end case;
                             else
-                                state <= STEP7;
+                                case step_state is
+                                    when S0=>step_state<=S7; when S7=>step_state<=S6; when S6=>step_state<=S5; when S5=>step_state<=S4;
+                                    when S4=>step_state<=S3; when S3=>step_state<=S2; when S2=>step_state<=S1; when others=>step_state<=S0;
+                                end case;
                             end if;
-
+                            homing_steps <= homing_steps + 1;
+                            if homing_steps >= REQ_HOMING_STEPS then
+                                state <= CALIB_WAIT;
+                                wait_cnt <= 0;
+                            end if;
+                        else
+                            tick_cnt <= tick_cnt + 1;
                         end if;
 
-                    ----------------------------------------------------------------
-                    when STEP1 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP2;
+                    -- Pausa dopo il muro
+                    when CALIB_WAIT =>
+                        if wait_cnt >= (CLK_FREQ_HZ/10) then  -- 100 ms
+                            if POST_HOMING_OFFSET > 0 then
+                                state <= POST_HOMING_MOVE;
+                                tick_cnt <= 0;
+                                backoff_steps <= 0;
+                                current_pos <= 0;   -- ora siamo a posizione 0
                             else
-                                state <= STEP0;
+                                current_pos <= 0;
+                                calibrated_i <= '1';
+                                state <= READY;
                             end if;
-
+                        else
+                            wait_cnt <= wait_cnt + 1;
                         end if;
 
-                    ----------------------------------------------------------------
-                    when STEP2 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP3;
+                    -- Movimento di back-off (allontanamento dal muro)
+                    when POST_HOMING_MOVE =>
+                        if tick_cnt >= (CLK_FREQ_HZ / HOMING_STEP_HZ) then
+                            tick_cnt <= 0;
+                            -- direzione opposta a quella di homing
+                            act_dir := not (HOMING_DIR xor invert_direction);
+                            if act_dir = '1' then
+                                case step_state is
+                                    when S0=>step_state<=S1; when S1=>step_state<=S2; when S2=>step_state<=S3; when S3=>step_state<=S4;
+                                    when S4=>step_state<=S5; when S5=>step_state<=S6; when S6=>step_state<=S7; when others=>step_state<=S0;
+                                end case;
                             else
-                                state <= STEP1;
+                                case step_state is
+                                    when S0=>step_state<=S7; when S7=>step_state<=S6; when S6=>step_state<=S5; when S5=>step_state<=S4;
+                                    when S4=>step_state<=S3; when S3=>step_state<=S2; when S2=>step_state<=S1; when others=>step_state<=S0;
+                                end case;
                             end if;
-
+                            backoff_steps <= backoff_steps + 1;
+                            current_pos <= current_pos + 1;   -- incrementiamo la posizione
+                            if backoff_steps >= POST_HOMING_OFFSET - 1 then
+                                state <= POST_HOMING_WAIT;
+                                wait_cnt <= 0;
+                            end if;
+                        else
+                            tick_cnt <= tick_cnt + 1;
                         end if;
 
-                    ----------------------------------------------------------------
-                    when STEP3 =>
+                    -- Pausa dopo back-off
+                    when POST_HOMING_WAIT =>
+                        if wait_cnt >= (CLK_FREQ_HZ/10) then
+                            calibrated_i <= '1';
+                            state <= READY;
+                        else
+                            wait_cnt <= wait_cnt + 1;
+                        end if;
 
-                        if enable = '0' then
-                            state <= IDLE;
+                    -- Pronto per i comandi
+                    when READY =>
+                        if target_position /= current_pos then
+                            state <= MOVE;
+                            tick_cnt <= 0;
+                        end if;
 
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP4;
+                    -- Movimento normale verso un target
+                    when MOVE =>
+                        if current_pos = target_position then
+                            state <= READY;
+                        elsif tick_cnt >= (CLK_FREQ_HZ / RUN_STEP_HZ) then
+                            tick_cnt <= 0;
+                            if target_position > current_pos then
+                                log_dir := '1';
                             else
-                                state <= STEP2;
+                                log_dir := '0';
                             end if;
-
-                        end if;
-
-                    ----------------------------------------------------------------
-                    when STEP4 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP5;
+                            act_dir := (not log_dir) xor invert_direction;
+                            if act_dir = '1' then
+                                case step_state is
+                                    when S0=>step_state<=S1; when S1=>step_state<=S2; when S2=>step_state<=S3; when S3=>step_state<=S4;
+                                    when S4=>step_state<=S5; when S5=>step_state<=S6; when S6=>step_state<=S7; when others=>step_state<=S0;
+                                end case;
                             else
-                                state <= STEP3;
+                                case step_state is
+                                    when S0=>step_state<=S7; when S7=>step_state<=S6; when S6=>step_state<=S5; when S5=>step_state<=S4;
+                                    when S4=>step_state<=S3; when S3=>step_state<=S2; when S2=>step_state<=S1; when others=>step_state<=S0;
+                                end case;
                             end if;
-
-                        end if;
-
-                    ----------------------------------------------------------------
-                    when STEP5 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP6;
+                            if log_dir = '1' then
+                                current_pos <= current_pos + 1;
                             else
-                                state <= STEP4;
+                                current_pos <= current_pos - 1;
                             end if;
-
+                        else
+                            tick_cnt <= tick_cnt + 1;
                         end if;
 
-                    ----------------------------------------------------------------
-                    when STEP6 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP7;
-                            else
-                                state <= STEP5;
-                            end if;
-
-                        end if;
-
-                    ----------------------------------------------------------------
-                    when STEP7 =>
-
-                        if enable = '0' then
-                            state <= IDLE;
-
-                        elsif tick_pulse = '1' then
-
-                            if dir = '1' then
-                                state <= STEP0;
-                            else
-                                state <= STEP6;
-                            end if;
-
-                        end if;
-
-                    ----------------------------------------------------------------
                     when others =>
-
                         state <= IDLE;
-
                 end case;
-
             end if;
-
         end if;
-    end process p_fsm;
+    end process;
 
-    ----------------------------------------------------------------------------
-    -- OUTPUT DECODE
-    ----------------------------------------------------------------------------
-    p_output : process(state)
-    begin
-
-        case state is
-
-            when STEP0  => coils <= "1000";
-            when STEP1  => coils <= "1100";
-            when STEP2  => coils <= "0100";
-            when STEP3  => coils <= "0110";
-            when STEP4  => coils <= "0010";
-            when STEP5  => coils <= "0011";
-            when STEP6  => coils <= "0001";
-            when STEP7  => coils <= "1001";
-
-            when others => coils <= "0000";
-
+    -- Decodifica step
+    process(step_state) begin
+        case step_state is
+            when S0=>coils<="1000"; when S1=>coils<="1100"; when S2=>coils<="0100"; when S3=>coils<="0110";
+            when S4=>coils<="0010"; when S5=>coils<="0011"; when S6=>coils<="0001"; when others=>coils<="1001";
         end case;
-
-    end process p_output;
-
-end architecture rtl;
+    end process;
+end architecture;

@@ -1,4 +1,0 @@
-ERROR: Exception caught trying to open file C:\Users\robin\Documents\GitHub\FPGA-GearBox---Group-Bertolini-Liberato\Gabriel_Files\Gearbox_Project.runs\impl_1/runme.log
-	Exception name: Error
-	Exception error code: 70
-	Exception message: Permission denied

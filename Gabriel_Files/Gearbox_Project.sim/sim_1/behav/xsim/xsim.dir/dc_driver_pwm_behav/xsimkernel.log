@@ -1,4 +1,4 @@
-Running: xsim.dir/dc_driver_pwm_behav/xsimk.exe -simmode gui -wdb dc_driver_pwm_behav.wdb -simrunnum 0 -socket 62461
+Running: xsim.dir/dc_driver_pwm_behav/xsimk.exe -simmode gui -wdb dc_driver_pwm_behav.wdb -simrunnum 0 -socket 61011
 Design successfully loaded
-Design Loading Memory Usage: 11144 KB (Peak: 11144 KB)
-Design Loading CPU Usage: 46 ms
+Design Loading Memory Usage: 11104 KB (Peak: 11104 KB)
+Design Loading CPU Usage: 31 ms
