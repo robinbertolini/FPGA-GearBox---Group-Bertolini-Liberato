@@ -15,7 +15,7 @@ entity main_motor_top_pwm is
         JA    : out STD_LOGIC_VECTOR(3 downto 2);
         JB    : out STD_LOGIC_VECTOR(3 downto 0);
         JC    : out STD_LOGIC_VECTOR(3 downto 0);
-        seg   : out STD_LOGIC_VECTOR(6 downto 0);  -- 7-seg
+        seg   : out STD_LOGIC_VECTOR(6 downto 0);
         an    : out STD_LOGIC_VECTOR(3 downto 0);
         dp    : out STD_LOGIC
     );
@@ -24,22 +24,11 @@ end main_motor_top_pwm;
 architecture rtl of main_motor_top_pwm is
 
     ----------------------------------------------------------------------------
-    -- PARAMETRI DI TARATURA (modifica qui)
+    -- PARAMETRI TARATI SPERIMENTALMENTE
     ----------------------------------------------------------------------------
-    -- POST_HOMING_OFFSET: passi di rientro DOPO aver toccato il muro.
-    -- Definisce la posizione di folle (marcia 0).
-    constant POST_HOMING_OFFSET : integer := 350;   -- angolo desiderato in passi
-
-    -- STEPS_X deve coincidere con POST_HOMING_OFFSET (nessun movimento extra dopo calibrazione)
-    constant STEPS_X : integer := POST_HOMING_OFFSET;
-
-    -- Passi per il motore 1 (JB) - avanti e indietro
-    constant S1_UP_STEPS   : integer := 450;   -- avanti (perfetto)
-    constant S1_DOWN_STEPS : integer := 550;   -- indietro (speculare all'avanti, regola se serve più o meno)
-
-    -- Passi per il motore 2 (JC) - avanti e indietro
-    constant S2_UP_STEPS   : integer := 450;   -- avanti (perfetto)
-    constant S2_DOWN_STEPS : integer := 550;   -- indietro (funziona bene così)
+    constant POST_HOMING_OFFSET : integer := 550;   -- rientro dopo il muro (neutro)
+    constant STEPS_X            : integer := POST_HOMING_OFFSET;
+    constant GEAR_STEP          : integer := 500;   -- passo simmetrico per le marce
 
     constant GLOBAL_CALIB_DIR : std_logic := '1';
 
@@ -82,7 +71,7 @@ begin
     JA(2) <= '1';
     JA(3) <= sw(0);
 
-    -- Impulso di calibrazione automatica all'avvio
+    -- Calibrazione automatica all'avvio o reset
     process(clk)
         variable counter : integer := 0;
         variable fired   : boolean := false;
@@ -102,30 +91,19 @@ begin
         end if;
     end process;
 
-    ----------------------------------------------------------------------------
-    -- Motori passo-passo con post-homing offset
     STEP1: stepper_position_controller
-        generic map (
-            CLK_FREQ_HZ        => 100_000_000,
-            HOMING_DIR         => '0',               -- regola se necessario
-            POST_HOMING_OFFSET => POST_HOMING_OFFSET
-        )
+        generic map (CLK_FREQ_HZ => 100_000_000, HOMING_DIR => '0', POST_HOMING_OFFSET => POST_HOMING_OFFSET)
         port map ( clk => clk, rst => master_reset, start_calibration => start_calib,
                    target_position => s1_target, invert_direction => GLOBAL_CALIB_DIR,
                    calibrated => s1_calibrated, busy => s1_busy, coils => JB );
 
     STEP2: stepper_position_controller
-        generic map (
-            CLK_FREQ_HZ        => 100_000_000,
-            HOMING_DIR         => '0',
-            POST_HOMING_OFFSET => POST_HOMING_OFFSET
-        )
+        generic map (CLK_FREQ_HZ => 100_000_000, HOMING_DIR => '0', POST_HOMING_OFFSET => POST_HOMING_OFFSET)
         port map ( clk => clk, rst => master_reset, start_calibration => start_calib,
                    target_position => s2_target, invert_direction => not GLOBAL_CALIB_DIR,
                    calibrated => s2_calibrated, busy => s2_busy, coils => JC );
 
-    ----------------------------------------------------------------------------
-    -- Pulsanti marce
+    -- Selezione marcia (solo dopo calibrazione)
     process(clk)
     begin
         if rising_edge(clk) then
@@ -140,26 +118,25 @@ begin
         end if;
     end process;
 
-    ----------------------------------------------------------------------------
-    -- Target position (USA I NUOVI PARAMETRI PER SINGOLO MOTORE)
+    -- Calcolo target con passo GEAR_STEP simmetrico
     process(clk)
     begin
         if rising_edge(clk) then
             if s1_calibrated = '1' and s2_calibrated = '1' then
                 case current_gear is
                     when 1 =>   -- entrambi avanti
-                        s1_target <= STEPS_X + S1_UP_STEPS;
-                        s2_target <= STEPS_X + S2_UP_STEPS;
+                        s1_target <= STEPS_X + GEAR_STEP;
+                        s2_target <= STEPS_X + GEAR_STEP;
                     when 2 =>   -- S1 avanti, S2 indietro
-                        s1_target <= STEPS_X + S1_UP_STEPS;
-                        s2_target <= STEPS_X - S2_DOWN_STEPS;
+                        s1_target <= STEPS_X + GEAR_STEP;
+                        s2_target <= STEPS_X - GEAR_STEP;
                     when 3 =>   -- entrambi indietro
-                        s1_target <= STEPS_X - S1_DOWN_STEPS;
-                        s2_target <= STEPS_X - S2_DOWN_STEPS;
+                        s1_target <= STEPS_X - GEAR_STEP;
+                        s2_target <= STEPS_X - GEAR_STEP;
                     when 4 =>   -- S1 indietro, S2 avanti
-                        s1_target <= STEPS_X - S1_DOWN_STEPS;
-                        s2_target <= STEPS_X + S2_UP_STEPS;
-                    when others =>  -- folle (target = STEPS_X)
+                        s1_target <= STEPS_X - GEAR_STEP;
+                        s2_target <= STEPS_X + GEAR_STEP;
+                    when others =>  -- folle
                         s1_target <= STEPS_X;
                         s2_target <= STEPS_X;
                 end case;
@@ -171,7 +148,8 @@ begin
     end process;
 
     ----------------------------------------------------------------------------
-    -- Display 7 segmenti
+    -- Display 7 segmenti: solo la marcia (cifra più a destra)
+    ----------------------------------------------------------------------------
     process(clk)
     begin
         if rising_edge(clk) then
@@ -180,7 +158,8 @@ begin
                 if digit_select = 3 then digit_select <= 0;
                 else digit_select <= digit_select + 1;
                 end if;
-            else digit_scan_counter <= digit_scan_counter + 1;
+            else
+                digit_scan_counter <= digit_scan_counter + 1;
             end if;
         end if;
     end process;
@@ -201,9 +180,11 @@ begin
                 when 4 => seg <= "0011001";
                 when others => seg <= "1111111";
             end case;
-        else seg <= "1111111";
+        else
+            seg <= "1111111";
         end if;
     end process;
 
     dp <= '1';
+
 end rtl;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date             : Wed May 20 17:18:40 2026
+| Date             : Thu May 21 17:26:15 2026
 | Host             : PcBobin running 64-bit major release  (build 9200)
 | Command          : report_power -file main_motor_top_pwm_power_routed.rpt -pb main_motor_top_pwm_power_summary_routed.pb -rpx main_motor_top_pwm_power_routed.rpx
 | Design           : main_motor_top_pwm
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 16.137 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 16.088 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 15.842                           |
-| Device Static (W)        | 0.295                            |
+| Dynamic (W)              | 15.794                           |
+| Device Static (W)        | 0.293                            |
 | Effective TJA (C/W)      | 5.0                              |
-| Max Ambient (C)          | 4.3                              |
-| Junction Temperature (C) | 105.7                            |
+| Max Ambient (C)          | 4.6                              |
+| Junction Temperature (C) | 105.4                            |
 | Confidence Level         | Low                              |
 | Setting File             | ---                              |
 | Simulation Activity File | ---                              |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     1.010 |     1050 |       --- |             --- |
-|   LUT as Logic |     0.734 |      421 |     20800 |            2.02 |
-|   CARRY4       |     0.235 |      132 |      8150 |            1.62 |
+| Slice Logic    |     0.964 |     1028 |       --- |             --- |
+|   LUT as Logic |     0.694 |      421 |     20800 |            2.02 |
+|   CARRY4       |     0.230 |      132 |      8150 |            1.62 |
 |   Register     |     0.035 |      333 |     41600 |            0.80 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |        6 |       --- |             --- |
-| Signals        |     0.821 |      588 |       --- |             --- |
-| I/O            |    14.010 |       34 |       106 |           32.08 |
-| Static Power   |     0.295 |          |           |                 |
-| Total          |    16.137 |          |           |                 |
+| Signals        |     0.775 |      588 |       --- |             --- |
+| I/O            |    14.055 |       34 |       106 |           32.08 |
+| Static Power   |     0.293 |          |           |                 |
+| Total          |    16.088 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     2.049 |       1.860 |      0.189 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.547 |       0.512 |      0.034 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     3.959 |       3.958 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     1.955 |       1.767 |      0.188 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.548 |       0.514 |      0.034 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     3.971 |       3.970 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,9 +138,9 @@ Table of Contents
 +--------------------+-----------+
 | Name               | Power (W) |
 +--------------------+-----------+
-| main_motor_top_pwm |    15.842 |
-|   STEP1            |     0.796 |
-|   STEP2            |     0.805 |
+| main_motor_top_pwm |    15.794 |
+|   STEP1            |     0.751 |
+|   STEP2            |     0.760 |
 +--------------------+-----------+
 
 

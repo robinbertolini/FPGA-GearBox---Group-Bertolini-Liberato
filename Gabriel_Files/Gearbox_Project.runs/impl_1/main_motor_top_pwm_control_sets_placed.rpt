@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Wed May 20 17:18:09 2026
+| Date         : Thu May 21 17:25:52 2026
 | Host         : PcBobin running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file main_motor_top_pwm_control_sets_placed.rpt
 | Design       : main_motor_top_pwm
@@ -77,13 +77,13 @@ Table of Contents
 |  clk_IBUF_BUFG |                                   | sw_IBUF[15]                       |                5 |             10 |         2.00 |
 |  clk_IBUF_BUFG |                                   |                                   |               10 |             15 |         1.50 |
 |  clk_IBUF_BUFG |                                   | digit_select[0]                   |                5 |             17 |         3.40 |
-|  clk_IBUF_BUFG | STEP2/homing_steps[31]_i_2__0_n_0 | STEP2/homing_steps[31]_i_1_n_0    |                8 |             31 |         3.88 |
 |  clk_IBUF_BUFG | STEP1/current_pos[31]_i_2_n_0     | STEP1/current_pos[31]_i_1__0_n_0  |                8 |             31 |         3.88 |
 |  clk_IBUF_BUFG | STEP1/homing_steps[31]_i_2_n_0    | STEP1/homing_steps[31]_i_1__0_n_0 |                8 |             31 |         3.88 |
-|  clk_IBUF_BUFG | STEP2/current_pos[31]_i_2__0_n_0  | STEP2/current_pos[31]_i_1_n_0     |                9 |             32 |         3.56 |
-|  clk_IBUF_BUFG | STEP2/tick_cnt[31]_i_1__0_n_0     |                                   |               10 |             32 |         3.20 |
-|  clk_IBUF_BUFG | STEP1/tick_cnt[31]_i_1_n_0        |                                   |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | STEP2/homing_steps[31]_i_2__0_n_0 | STEP2/homing_steps[31]_i_1_n_0    |                8 |             31 |         3.88 |
+|  clk_IBUF_BUFG | STEP1/tick_cnt[31]_i_1_n_0        |                                   |               10 |             32 |         3.20 |
 |  clk_IBUF_BUFG | STEP1/wait_cnt[31]_i_2_n_0        | STEP1/wait_cnt[31]_i_1__0_n_0     |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | STEP2/current_pos[31]_i_2__0_n_0  | STEP2/current_pos[31]_i_1_n_0     |                9 |             32 |         3.56 |
+|  clk_IBUF_BUFG | STEP2/tick_cnt[31]_i_1__0_n_0     |                                   |                9 |             32 |         3.56 |
 |  clk_IBUF_BUFG | STEP2/wait_cnt[31]_i_2__0_n_0     | STEP2/wait_cnt[31]_i_1_n_0        |                9 |             32 |         3.56 |
 |  clk_IBUF_BUFG | counter[0]_i_1_n_0                | sw_IBUF[15]                       |                8 |             32 |         4.00 |
 +----------------+-----------------------------------+-----------------------------------+------------------+----------------+--------------+

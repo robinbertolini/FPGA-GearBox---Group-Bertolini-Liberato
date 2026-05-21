@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Wed May 20 17:17:02 2026
+| Date         : Thu May 21 17:25:05 2026
 | Host         : PcBobin running 64-bit major release  (build 9200)
 | Command      : report_utilization -file main_motor_top_pwm_utilization_synth.rpt -pb main_motor_top_pwm_utilization_synth.pb
 | Design       : main_motor_top_pwm
@@ -154,14 +154,14 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
+| LUT2     |  348 |                 LUT |
 | FDRE     |  333 |        Flop & Latch |
-| LUT2     |  321 |                 LUT |
 | CARRY4   |  132 |          CarryLogic |
-| LUT6     |   90 |                 LUT |
-| LUT3     |   73 |                 LUT |
-| LUT4     |   51 |                 LUT |
-| LUT5     |   35 |                 LUT |
+| LUT6     |   94 |                 LUT |
+| LUT3     |   56 |                 LUT |
+| LUT5     |   31 |                 LUT |
 | OBUF     |   26 |                  IO |
+| LUT4     |   19 |                 LUT |
 | LUT1     |    8 |                 LUT |
 | IBUF     |    8 |                  IO |
 | BUFG     |    1 |               Clock |
