@@ -4,7 +4,7 @@
 # Vivado(TM)
 # runme.sh: a Vivado-generated Runs Script for UNIX
 # Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-# Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+# Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 # 
 
 echo "This script was generated under a different operating system."
@@ -12,9 +12,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=C:/AMDDesignTools/2025.2/Vitis/bin;C:/AMDDesignTools/2025.2/Vivado/ids_lite/ISE/bin/nt64;C:/AMDDesignTools/2025.2/Vivado/ids_lite/ISE/lib/nt64:C:/AMDDesignTools/2025.2/Vivado/bin
+  PATH=C:/AMDDesignTools/2025.2.1/Vitis/bin;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/bin/nt64;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/lib/nt64:C:/AMDDesignTools/2025.2.1/Vivado/bin
 else
-  PATH=C:/AMDDesignTools/2025.2/Vitis/bin;C:/AMDDesignTools/2025.2/Vivado/ids_lite/ISE/bin/nt64;C:/AMDDesignTools/2025.2/Vivado/ids_lite/ISE/lib/nt64:C:/AMDDesignTools/2025.2/Vivado/bin:$PATH
+  PATH=C:/AMDDesignTools/2025.2.1/Vitis/bin;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/bin/nt64;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/lib/nt64:C:/AMDDesignTools/2025.2.1/Vivado/bin:$PATH
 fi
 export PATH
 

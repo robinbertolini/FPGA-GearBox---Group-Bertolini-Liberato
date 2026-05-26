@@ -59,9 +59,8 @@ OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param checkpoint.writeSynthRtdsInDcp 1
 set_param general.usePosixSpawnForFork 1
 set_param chipscope.maxJobs 5
-set_param synth.incrementalSynthesisCache C:/Users/robin/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-4784-PcBobin/incrSyn
+set_param synth.incrementalSynthesisCache C:/Users/robin/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-18508-PcBobin/incrSyn
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
@@ -74,8 +73,6 @@ set_property webtalk.parent_dir C:/Users/robin/Documents/GitHub/FPGA-GearBox---G
 set_property parent.project_path C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property board_part_repo_paths {C:/Users/robin/AppData/Roaming/Xilinx/Vivado/2025.2/xhub/board_store/xilinx_board_store} [current_project]
-set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
 set_property ip_output_repo c:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }

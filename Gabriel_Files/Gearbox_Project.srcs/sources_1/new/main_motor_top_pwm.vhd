@@ -26,9 +26,9 @@ architecture rtl of main_motor_top_pwm is
     ----------------------------------------------------------------------------
     -- PARAMETRI TARATI SPERIMENTALMENTE
     ----------------------------------------------------------------------------
-    constant POST_HOMING_OFFSET : integer := 550;   -- rientro dopo il muro (neutro)
+    constant POST_HOMING_OFFSET : integer := 550;   -- rientro dopo il muro (neutro) => NEUTRAL!!!
     constant STEPS_X            : integer := POST_HOMING_OFFSET;
-    constant GEAR_STEP          : integer := 500;   -- passo simmetrico per le marce
+    constant GEAR_STEP          : integer := 750;   -- passo simmetrico per le marce
 
     constant GLOBAL_CALIB_DIR : std_logic := '1';
 

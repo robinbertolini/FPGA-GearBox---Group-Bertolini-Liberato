@@ -97,7 +97,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
 
@@ -111,7 +110,7 @@ set rc [catch {
   set_param checkpoint.writeSynthRtdsInDcp 1
   set_param general.usePosixSpawnForFork 1
   set_param chipscope.maxJobs 5
-  set_param synth.incrementalSynthesisCache C:/Users/robin/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-4784-PcBobin/incrSyn
+  set_param synth.incrementalSynthesisCache C:/Users/robin/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-18508-PcBobin/incrSyn
   set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 20  }
   open_checkpoint main_motor_top_pwm_routed.dcp
