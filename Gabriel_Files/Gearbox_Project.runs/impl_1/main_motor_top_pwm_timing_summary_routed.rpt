@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2.1 (win64) Build 6403652 Thu Mar 19 19:48:24 GMT 2026
-| Date         : Tue May 26 14:37:25 2026
+| Date         : Tue May 26 17:53:58 2026
 | Host         : PcBobin running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -routable_nets -report_unconstrained -file main_motor_top_pwm_timing_summary_routed.rpt -pb main_motor_top_pwm_timing_summary_routed.pb -rpx main_motor_top_pwm_timing_summary_routed.rpx -warn_on_violation
 | Design       : main_motor_top_pwm
@@ -43,7 +43,8 @@ Timing Summary Report
 
 Rule       Severity          Description                  Violations  
 ---------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  335         
+TIMING-17  Critical Warning  Non-clocked sequential cell  478         
+SYNTH-9    Warning           Small multiplier             10          
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -53,11 +54,11 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (335)
+1. checking no_clock (478)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (876)
-5. checking no_input_delay (6)
+4. checking unconstrained_internal_endpoints (1253)
+5. checking no_input_delay (8)
 6. checking no_output_delay (23)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -66,9 +67,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (335)
+1. checking no_clock (478)
 --------------------------
- There are 335 register/latch pins with no clock driven by root clock pin: clk (HIGH)
+ There are 478 register/latch pins with no clock driven by root clock pin: clk (HIGH)
 
 
 2. checking constant_clock (0)
@@ -81,16 +82,16 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (876)
---------------------------------------------------
- There are 876 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (1253)
+---------------------------------------------------
+ There are 1253 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (6)
+5. checking no_input_delay (8)
 ------------------------------
- There are 6 input ports with no input delay specified. (HIGH)
+ There are 8 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -142,7 +143,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  900          inf        0.000                      0                  900           NA           NA                      NA                    NA  
+        inf        0.000                      0                 1277          inf        0.000                      0                 1277           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -211,228 +212,790 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay           900 Endpoints
-Min Delay           900 Endpoints
+Max Delay          1277 Endpoints
+Min Delay          1277 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 sw[0]
+  Source:                 sw[13]
                             (input port)
-  Destination:            JA[3]
+  Destination:            seg[2]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.590ns  (logic 4.960ns (42.793%)  route 6.631ns (57.207%))
-  Logic Levels:           2  (IBUF=1 OBUF=1)
+  Data Path Delay:        27.642ns  (logic 11.730ns (42.435%)  route 15.912ns (57.565%))
+  Logic Levels:           25  (CARRY4=10 IBUF=1 LUT2=2 LUT4=3 LUT5=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    V17                                               0.000     0.000 r  sw[0] (IN)
-                         net (fo=0)                   0.000     0.000    sw[0]
-    V17                  IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[0]_inst/O
-                         net (fo=1, routed)           6.631     8.083    JA_OBUF[3]
-    G3                   OBUF (Prop_obuf_I_O)         3.507    11.590 r  JA_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    11.590    JA[3]
-    G3                                                                r  JA[3] (OUT)
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.903    19.266    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I2_O)        0.124    19.390 r  SENSOR2/seg_OBUF[6]_inst_i_15/O
+                         net (fo=1, routed)           0.665    20.055    SENSOR2/seg_OBUF[6]_inst_i_15_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I5_O)        0.124    20.179 r  SENSOR2/seg_OBUF[6]_inst_i_5/O
+                         net (fo=10, routed)          1.126    21.305    SENSOR1/seg_OBUF[2]_inst_i_1_3
+    SLICE_X62Y16         LUT6 (Prop_lut6_I2_O)        0.124    21.429 r  SENSOR1/seg_OBUF[2]_inst_i_3/O
+                         net (fo=1, routed)           0.667    22.096    SENSOR1/seg_OBUF[2]_inst_i_3_n_0
+    SLICE_X62Y16         LUT6 (Prop_lut6_I1_O)        0.124    22.220 r  SENSOR1/seg_OBUF[2]_inst_i_1/O
+                         net (fo=1, routed)           1.887    24.107    seg_OBUF[2]
+    U8                   OBUF (Prop_obuf_I_O)         3.535    27.642 r  seg_OBUF[2]_inst/O
+                         net (fo=0)                   0.000    27.642    seg[2]
+    U8                                                                r  seg[2] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP1/FSM_sequential_state_reg[1]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            led[2]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        10.743ns  (logic 4.089ns (38.060%)  route 6.654ns (61.940%))
-  Logic Levels:           3  (FDRE=1 LUT3=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X63Y63         FDRE                         0.000     0.000 r  STEP1/FSM_sequential_state_reg[1]/C
-    SLICE_X63Y63         FDRE (Prop_fdre_C_Q)         0.456     0.456 f  STEP1/FSM_sequential_state_reg[1]/Q
-                         net (fo=54, routed)          2.236     2.692    STEP1/state[1]
-    SLICE_X62Y55         LUT3 (Prop_lut3_I0_O)        0.124     2.816 r  STEP1/led_OBUF[2]_inst_i_1/O
-                         net (fo=1, routed)           4.418     7.234    led_OBUF[2]
-    V19                  OBUF (Prop_obuf_I_O)         3.509    10.743 r  led_OBUF[2]_inst/O
-                         net (fo=0)                   0.000    10.743    led[2]
-    V19                                                               r  led[2] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 STEP2/FSM_sequential_state_reg[1]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            led[3]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        10.048ns  (logic 4.319ns (42.981%)  route 5.729ns (57.019%))
-  Logic Levels:           3  (FDRE=1 LUT3=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X53Y61         FDRE                         0.000     0.000 r  STEP2/FSM_sequential_state_reg[1]/C
-    SLICE_X53Y61         FDRE (Prop_fdre_C_Q)         0.456     0.456 f  STEP2/FSM_sequential_state_reg[1]/Q
-                         net (fo=50, routed)          1.406     1.862    STEP2/state[1]
-    SLICE_X52Y59         LUT3 (Prop_lut3_I0_O)        0.150     2.012 r  STEP2/led_OBUF[3]_inst_i_1/O
-                         net (fo=1, routed)           4.323     6.335    led_OBUF[3]
-    W18                  OBUF (Prop_obuf_I_O)         3.713    10.048 r  led_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    10.048    led[3]
-    W18                                                               r  led[3] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 current_gear_reg[2]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            seg[0]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        9.231ns  (logic 4.317ns (46.764%)  route 4.914ns (53.236%))
-  Logic Levels:           3  (FDRE=1 LUT5=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[2]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  current_gear_reg[2]/Q
-                         net (fo=14, routed)          2.959     3.415    current_gear_reg_n_0_[2]
-    SLICE_X64Y21         LUT5 (Prop_lut5_I4_O)        0.146     3.561 r  seg_OBUF[3]_inst_i_1/O
-                         net (fo=2, routed)           1.955     5.516    seg_OBUF[0]
-    W7                   OBUF (Prop_obuf_I_O)         3.715     9.231 r  seg_OBUF[0]_inst/O
-                         net (fo=0)                   0.000     9.231    seg[0]
-    W7                                                                r  seg[0] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 STEP1/calibrated_i_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            led[0]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        9.177ns  (logic 3.961ns (43.158%)  route 5.217ns (56.842%))
-  Logic Levels:           2  (FDRE=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X63Y55         FDRE                         0.000     0.000 r  STEP1/calibrated_i_reg/C
-    SLICE_X63Y55         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  STEP1/calibrated_i_reg/Q
-                         net (fo=5, routed)           5.217     5.673    led_OBUF[0]
-    U16                  OBUF (Prop_obuf_I_O)         3.505     9.177 r  led_OBUF[0]_inst/O
-                         net (fo=0)                   0.000     9.177    led[0]
-    U16                                                               r  led[0] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 current_gear_reg[0]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            seg[4]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        9.096ns  (logic 4.328ns (47.582%)  route 4.768ns (52.418%))
-  Logic Levels:           3  (FDRE=1 LUT4=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[0]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  current_gear_reg[0]/Q
-                         net (fo=14, routed)          3.090     3.546    current_gear_reg_n_0_[0]
-    SLICE_X64Y19         LUT4 (Prop_lut4_I2_O)        0.148     3.694 r  seg_OBUF[4]_inst_i_1/O
-                         net (fo=1, routed)           1.678     5.372    seg_OBUF[4]
-    U5                   OBUF (Prop_obuf_I_O)         3.724     9.096 r  seg_OBUF[4]_inst/O
-                         net (fo=0)                   0.000     9.096    seg[4]
-    U5                                                                r  seg[4] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 current_gear_reg[0]/C
-                            (rising edge-triggered cell FDRE)
+  Source:                 sw[13]
+                            (input port)
   Destination:            seg[1]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        9.086ns  (logic 4.326ns (47.611%)  route 4.760ns (52.389%))
-  Logic Levels:           3  (FDRE=1 LUT5=1 OBUF=1)
+  Data Path Delay:        27.512ns  (logic 11.724ns (42.615%)  route 15.788ns (57.385%))
+  Logic Levels:           25  (CARRY4=10 IBUF=1 LUT2=2 LUT4=3 LUT5=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[0]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  current_gear_reg[0]/Q
-                         net (fo=14, routed)          2.855     3.311    current_gear_reg_n_0_[0]
-    SLICE_X64Y19         LUT5 (Prop_lut5_I1_O)        0.117     3.428 r  seg_OBUF[1]_inst_i_1/O
-                         net (fo=1, routed)           1.905     5.333    seg_OBUF[1]
-    W6                   OBUF (Prop_obuf_I_O)         3.753     9.086 r  seg_OBUF[1]_inst/O
-                         net (fo=0)                   0.000     9.086    seg[1]
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.664    19.027    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X60Y14         LUT6 (Prop_lut6_I3_O)        0.124    19.151 r  SENSOR2/seg_OBUF[6]_inst_i_19/O
+                         net (fo=1, routed)           0.670    19.821    SENSOR2/seg_OBUF[6]_inst_i_19_n_0
+    SLICE_X60Y14         LUT6 (Prop_lut6_I5_O)        0.124    19.945 r  SENSOR2/seg_OBUF[6]_inst_i_6/O
+                         net (fo=9, routed)           1.330    21.275    SENSOR1/seg_OBUF[2]_inst_i_1_1
+    SLICE_X61Y17         LUT6 (Prop_lut6_I2_O)        0.124    21.399 r  SENSOR1/seg_OBUF[1]_inst_i_2/O
+                         net (fo=1, routed)           0.433    21.832    SENSOR1/seg_OBUF[1]_inst_i_2_n_0
+    SLICE_X61Y17         LUT6 (Prop_lut6_I0_O)        0.124    21.956 r  SENSOR1/seg_OBUF[1]_inst_i_1/O
+                         net (fo=1, routed)           2.026    23.982    seg_OBUF[1]
+    W6                   OBUF (Prop_obuf_I_O)         3.529    27.512 r  seg_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    27.512    seg[1]
     W6                                                                r  seg[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 current_gear_reg[0]/C
-                            (rising edge-triggered cell FDRE)
+  Source:                 sw[13]
+                            (input port)
   Destination:            seg[5]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.984ns  (logic 4.084ns (45.462%)  route 4.900ns (54.538%))
-  Logic Levels:           3  (FDRE=1 LUT4=1 OBUF=1)
+  Data Path Delay:        27.146ns  (logic 11.699ns (43.098%)  route 15.447ns (56.902%))
+  Logic Levels:           25  (CARRY4=10 IBUF=1 LUT2=2 LUT4=3 LUT5=3 LUT6=5 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[0]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  current_gear_reg[0]/Q
-                         net (fo=14, routed)          3.090     3.546    current_gear_reg_n_0_[0]
-    SLICE_X64Y19         LUT4 (Prop_lut4_I2_O)        0.124     3.670 r  seg_OBUF[5]_inst_i_1/O
-                         net (fo=1, routed)           1.810     5.480    seg_OBUF[5]
-    V5                   OBUF (Prop_obuf_I_O)         3.504     8.984 r  seg_OBUF[5]_inst/O
-                         net (fo=0)                   0.000     8.984    seg[5]
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.903    19.266    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I2_O)        0.124    19.390 f  SENSOR2/seg_OBUF[6]_inst_i_15/O
+                         net (fo=1, routed)           0.665    20.055    SENSOR2/seg_OBUF[6]_inst_i_15_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I5_O)        0.124    20.179 f  SENSOR2/seg_OBUF[6]_inst_i_5/O
+                         net (fo=10, routed)          1.275    21.454    SENSOR2/digit_select_reg[1]_0
+    SLICE_X62Y17         LUT6 (Prop_lut6_I1_O)        0.124    21.578 r  SENSOR2/seg_OBUF[5]_inst_i_4/O
+                         net (fo=1, routed)           0.280    21.858    SENSOR2/seg_OBUF[5]_inst_i_4_n_0
+    SLICE_X62Y17         LUT6 (Prop_lut6_I5_O)        0.124    21.982 r  SENSOR2/seg_OBUF[5]_inst_i_1/O
+                         net (fo=1, routed)           1.660    23.642    seg_OBUF[5]
+    V5                   OBUF (Prop_obuf_I_O)         3.504    27.146 r  seg_OBUF[5]_inst/O
+                         net (fo=0)                   0.000    27.146    seg[5]
     V5                                                                r  seg[5] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 current_gear_reg[2]/C
-                            (rising edge-triggered cell FDRE)
+  Source:                 sw[13]
+                            (input port)
+  Destination:            seg[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        27.125ns  (logic 11.582ns (42.697%)  route 15.544ns (57.303%))
+  Logic Levels:           24  (CARRY4=10 IBUF=1 LUT2=2 LUT4=3 LUT5=3 LUT6=4 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.903    19.266    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I2_O)        0.124    19.390 r  SENSOR2/seg_OBUF[6]_inst_i_15/O
+                         net (fo=1, routed)           0.665    20.055    SENSOR2/seg_OBUF[6]_inst_i_15_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I5_O)        0.124    20.179 r  SENSOR2/seg_OBUF[6]_inst_i_5/O
+                         net (fo=10, routed)          1.457    21.636    SENSOR2/digit_select_reg[1]_0
+    SLICE_X62Y18         LUT6 (Prop_lut6_I3_O)        0.124    21.760 r  SENSOR2/seg_OBUF[0]_inst_i_1/O
+                         net (fo=1, routed)           1.854    23.615    seg_OBUF[0]
+    W7                   OBUF (Prop_obuf_I_O)         3.511    27.125 r  seg_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    27.125    seg[0]
+    W7                                                                r  seg[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 sw[13]
+                            (input port)
+  Destination:            seg[4]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        27.118ns  (logic 11.715ns (43.200%)  route 15.403ns (56.800%))
+  Logic Levels:           25  (CARRY4=10 IBUF=1 LUT2=2 LUT4=4 LUT5=3 LUT6=4 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.903    19.266    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I2_O)        0.124    19.390 r  SENSOR2/seg_OBUF[6]_inst_i_15/O
+                         net (fo=1, routed)           0.665    20.055    SENSOR2/seg_OBUF[6]_inst_i_15_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I5_O)        0.124    20.179 r  SENSOR2/seg_OBUF[6]_inst_i_5/O
+                         net (fo=10, routed)          1.323    21.503    SENSOR2/digit_select_reg[1]_0
+    SLICE_X60Y17         LUT4 (Prop_lut4_I0_O)        0.124    21.627 r  SENSOR2/seg_OBUF[4]_inst_i_3/O
+                         net (fo=1, routed)           0.162    21.788    SENSOR2/seg_OBUF[4]_inst_i_3_n_0
+    SLICE_X60Y17         LUT6 (Prop_lut6_I5_O)        0.124    21.912 r  SENSOR2/seg_OBUF[4]_inst_i_1/O
+                         net (fo=1, routed)           1.685    23.598    seg_OBUF[4]
+    U5                   OBUF (Prop_obuf_I_O)         3.520    27.118 r  seg_OBUF[4]_inst/O
+                         net (fo=0)                   0.000    27.118    seg[4]
+    U5                                                                r  seg[4] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 sw[13]
+                            (input port)
   Destination:            seg[3]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.975ns  (logic 4.342ns (48.376%)  route 4.633ns (51.624%))
-  Logic Levels:           3  (FDRE=1 LUT5=1 OBUF=1)
+  Data Path Delay:        27.008ns  (logic 11.606ns (42.974%)  route 15.402ns (57.026%))
+  Logic Levels:           24  (CARRY4=10 IBUF=1 LUT2=2 LUT4=3 LUT5=3 LUT6=4 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[2]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  current_gear_reg[2]/Q
-                         net (fo=14, routed)          2.959     3.415    current_gear_reg_n_0_[2]
-    SLICE_X64Y21         LUT5 (Prop_lut5_I4_O)        0.146     3.561 r  seg_OBUF[3]_inst_i_1/O
-                         net (fo=2, routed)           1.674     5.235    seg_OBUF[0]
-    V8                   OBUF (Prop_obuf_I_O)         3.740     8.975 r  seg_OBUF[3]_inst/O
-                         net (fo=0)                   0.000     8.975    seg[3]
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.903    19.266    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I2_O)        0.124    19.390 r  SENSOR2/seg_OBUF[6]_inst_i_15/O
+                         net (fo=1, routed)           0.665    20.055    SENSOR2/seg_OBUF[6]_inst_i_15_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I5_O)        0.124    20.179 r  SENSOR2/seg_OBUF[6]_inst_i_5/O
+                         net (fo=10, routed)          1.450    21.629    SENSOR2/digit_select_reg[1]_0
+    SLICE_X62Y18         LUT6 (Prop_lut6_I3_O)        0.124    21.753 r  SENSOR2/seg_OBUF[3]_inst_i_1/O
+                         net (fo=1, routed)           1.720    23.472    seg_OBUF[3]
+    V8                   OBUF (Prop_obuf_I_O)         3.536    27.008 r  seg_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    27.008    seg[3]
     V8                                                                r  seg[3] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 current_gear_reg[0]/C
-                            (rising edge-triggered cell FDRE)
+  Source:                 sw[13]
+                            (input port)
   Destination:            seg[6]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        8.838ns  (logic 4.111ns (46.521%)  route 4.726ns (53.479%))
-  Logic Levels:           3  (FDRE=1 LUT5=1 OBUF=1)
+  Data Path Delay:        26.809ns  (logic 11.602ns (43.278%)  route 15.206ns (56.722%))
+  Logic Levels:           24  (CARRY4=10 IBUF=1 LUT2=2 LUT4=3 LUT5=3 LUT6=4 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[0]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  current_gear_reg[0]/Q
-                         net (fo=14, routed)          2.855     3.311    current_gear_reg_n_0_[0]
-    SLICE_X64Y19         LUT5 (Prop_lut5_I4_O)        0.124     3.435 r  seg_OBUF[6]_inst_i_1/O
-                         net (fo=1, routed)           1.871     5.306    seg_OBUF[6]
-    U7                   OBUF (Prop_obuf_I_O)         3.531     8.838 r  seg_OBUF[6]_inst/O
-                         net (fo=0)                   0.000     8.838    seg[6]
+    U1                                                0.000     0.000 r  sw[13] (IN)
+                         net (fo=0)                   0.000     0.000    sw[13]
+    U1                   IBUF (Prop_ibuf_I_O)         1.453     1.453 r  sw_IBUF[13]_inst/O
+                         net (fo=48, routed)          3.045     4.498    SENSOR2/sw_IBUF[0]
+    SLICE_X50Y9          LUT5 (Prop_lut5_I3_O)        0.124     4.622 r  SENSOR2/seg_OBUF[6]_inst_i_139/O
+                         net (fo=1, routed)           0.000     4.622    SENSOR2/seg_OBUF[6]_inst_i_139_n_0
+    SLICE_X50Y9          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     5.155 r  SENSOR2/seg_OBUF[6]_inst_i_108/CO[3]
+                         net (fo=1, routed)           0.000     5.155    SENSOR2/seg_OBUF[6]_inst_i_108_n_0
+    SLICE_X50Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.272 r  SENSOR2/seg_OBUF[6]_inst_i_97/CO[3]
+                         net (fo=1, routed)           0.000     5.272    SENSOR2/seg_OBUF[6]_inst_i_97_n_0
+    SLICE_X50Y11         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     5.389 r  SENSOR2/seg_OBUF[6]_inst_i_72/CO[3]
+                         net (fo=1, routed)           0.000     5.389    SENSOR2/seg_OBUF[6]_inst_i_72_n_0
+    SLICE_X50Y12         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219     5.608 r  SENSOR2/seg_OBUF[6]_inst_i_107/O[0]
+                         net (fo=9, routed)           1.194     6.802    SENSOR2/seg_OBUF[6]_inst_i_107_n_7
+    SLICE_X50Y14         LUT4 (Prop_lut4_I2_O)        0.295     7.097 r  SENSOR2/seg_OBUF[6]_inst_i_128/O
+                         net (fo=1, routed)           0.000     7.097    SENSOR2/seg_OBUF[6]_inst_i_128_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.643     7.740 r  SENSOR2/seg_OBUF[6]_inst_i_106/O[3]
+                         net (fo=3, routed)           0.592     8.332    SENSOR2/seg_OBUF[6]_inst_i_106_n_4
+    SLICE_X51Y13         LUT4 (Prop_lut4_I2_O)        0.307     8.639 r  SENSOR2/seg_OBUF[6]_inst_i_121/O
+                         net (fo=1, routed)           0.000     8.639    SENSOR2/seg_OBUF[6]_inst_i_121_n_0
+    SLICE_X51Y13         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580     9.219 r  SENSOR2/seg_OBUF[6]_inst_i_105/O[2]
+                         net (fo=1, routed)           0.801    10.020    SENSOR2/seg_OBUF[6]_inst_i_105_n_5
+    SLICE_X51Y12         LUT4 (Prop_lut4_I3_O)        0.302    10.322 r  SENSOR2/seg_OBUF[6]_inst_i_80/O
+                         net (fo=1, routed)           0.000    10.322    SENSOR2/seg_OBUF[6]_inst_i_80_n_0
+    SLICE_X51Y12         CARRY4 (Prop_carry4_S[1]_O[2])
+                                                      0.580    10.902 r  SENSOR2/seg_OBUF[6]_inst_i_58/O[2]
+                         net (fo=11, routed)          0.835    11.737    SENSOR2/seg_OBUF[6]_inst_i_58_n_5
+    SLICE_X55Y13         LUT5 (Prop_lut5_I4_O)        0.328    12.065 r  SENSOR2/seg_OBUF[6]_inst_i_70/O
+                         net (fo=5, routed)           0.972    13.037    SENSOR2/seg_OBUF[6]_inst_i_70_n_0
+    SLICE_X57Y12         LUT2 (Prop_lut2_I0_O)        0.326    13.363 r  SENSOR2/seg_OBUF[6]_inst_i_30/O
+                         net (fo=9, routed)           0.934    14.297    SENSOR2/p_0_in[3]
+    SLICE_X56Y14         LUT2 (Prop_lut2_I1_O)        0.124    14.421 r  SENSOR2/seg_OBUF[6]_inst_i_57/O
+                         net (fo=1, routed)           0.000    14.421    SENSOR2/seg_OBUF[6]_inst_i_57_n_0
+    SLICE_X56Y14         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    14.934 r  SENSOR2/seg_OBUF[6]_inst_i_23/CO[3]
+                         net (fo=1, routed)           0.000    14.934    SENSOR2/seg_OBUF[6]_inst_i_23_n_0
+    SLICE_X56Y15         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.323    15.257 r  SENSOR2/seg_OBUF[6]_inst_i_8/O[1]
+                         net (fo=14, routed)          1.040    16.297    SENSOR2/seg_OBUF[6]_inst_i_8_n_6
+    SLICE_X55Y14         LUT5 (Prop_lut5_I3_O)        0.306    16.603 r  SENSOR2/seg_OBUF[6]_inst_i_62/O
+                         net (fo=1, routed)           0.549    17.152    SENSOR2/seg_OBUF[6]_inst_i_62_n_0
+    SLICE_X57Y14         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    17.537 r  SENSOR2/seg_OBUF[6]_inst_i_28/CO[3]
+                         net (fo=1, routed)           0.702    18.239    SENSOR2/seg_OBUF[6]_inst_i_28_n_0
+    SLICE_X58Y14         LUT6 (Prop_lut6_I5_O)        0.124    18.363 r  SENSOR2/seg_OBUF[6]_inst_i_9/O
+                         net (fo=4, routed)           0.903    19.266    SENSOR2/seg_OBUF[6]_inst_i_9_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I2_O)        0.124    19.390 r  SENSOR2/seg_OBUF[6]_inst_i_15/O
+                         net (fo=1, routed)           0.665    20.055    SENSOR2/seg_OBUF[6]_inst_i_15_n_0
+    SLICE_X59Y14         LUT6 (Prop_lut6_I5_O)        0.124    20.179 r  SENSOR2/seg_OBUF[6]_inst_i_5/O
+                         net (fo=10, routed)          1.127    21.306    SENSOR2/digit_select_reg[1]_0
+    SLICE_X62Y15         LUT6 (Prop_lut6_I3_O)        0.124    21.430 r  SENSOR2/seg_OBUF[6]_inst_i_1/O
+                         net (fo=1, routed)           1.847    23.277    seg_OBUF[6]
+    U7                   OBUF (Prop_obuf_I_O)         3.531    26.809 r  seg_OBUF[6]_inst/O
+                         net (fo=0)                   0.000    26.809    seg[6]
     U7                                                                r  seg[6] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 SENSOR2/latched_cnt_reg[5]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            rpm2_latched_reg[4]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.362ns  (logic 11.430ns (46.918%)  route 12.932ns (53.082%))
+  Logic Levels:           26  (CARRY4=14 DSP48E1=1 FDRE=1 LUT2=2 LUT3=3 LUT4=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y6          FDRE                         0.000     0.000 r  SENSOR2/latched_cnt_reg[5]/C
+    SLICE_X55Y6          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  SENSOR2/latched_cnt_reg[5]/Q
+                         net (fo=3, routed)           1.141     1.597    SENSOR2/latched_cnt[5]
+    SLICE_X54Y6          LUT2 (Prop_lut2_I0_O)        0.124     1.721 r  SENSOR2/rpm3_i_16/O
+                         net (fo=1, routed)           0.000     1.721    SENSOR2/rpm3_i_16_n_0
+    SLICE_X54Y6          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     2.234 r  SENSOR2/rpm3_i_4/CO[3]
+                         net (fo=1, routed)           0.000     2.234    SENSOR2/rpm3_i_4_n_0
+    SLICE_X54Y7          CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     2.549 r  SENSOR2/rpm3_i_3/O[3]
+                         net (fo=1, routed)           0.704     3.252    SENSOR2/rpm3_i_3_n_4
+    DSP48_X1Y2           DSP48E1 (Prop_dsp48e1_A[13]_P[4])
+                                                      4.024     7.276 r  SENSOR2/rpm3/P[4]
+                         net (fo=31, routed)          2.275     9.551    SENSOR2/rpm3_n_101
+    SLICE_X58Y1          LUT3 (Prop_lut3_I2_O)        0.124     9.675 r  SENSOR2/rpm2_latched[3]_i_136/O
+                         net (fo=2, routed)           1.149    10.824    SENSOR2/rpm2_latched[3]_i_136_n_0
+    SLICE_X59Y4          CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    11.209 r  SENSOR2/rpm2_latched_reg[3]_i_86/CO[3]
+                         net (fo=1, routed)           0.000    11.209    SENSOR2/rpm2_latched_reg[3]_i_86_n_0
+    SLICE_X59Y5          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    11.448 r  SENSOR2/rpm2_latched_reg[3]_i_42/O[2]
+                         net (fo=3, routed)           0.988    12.436    SENSOR2/rpm2_latched_reg[3]_i_42_n_5
+    SLICE_X62Y4          LUT3 (Prop_lut3_I2_O)        0.302    12.738 r  SENSOR2/rpm2_latched[3]_i_46/O
+                         net (fo=2, routed)           0.817    13.556    SENSOR2/rpm2_latched[3]_i_46_n_0
+    SLICE_X62Y5          LUT5 (Prop_lut5_I1_O)        0.124    13.680 r  SENSOR2/rpm2_latched[3]_i_17/O
+                         net (fo=2, routed)           1.021    14.700    SENSOR2/rpm2_latched[3]_i_17_n_0
+    SLICE_X60Y5          LUT6 (Prop_lut6_I0_O)        0.124    14.824 r  SENSOR2/rpm2_latched[3]_i_21/O
+                         net (fo=1, routed)           0.000    14.824    SENSOR2/rpm2_latched[3]_i_21_n_0
+    SLICE_X60Y5          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    15.357 r  SENSOR2/rpm2_latched_reg[3]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.357    SENSOR2/rpm2_latched_reg[3]_i_5_n_0
+    SLICE_X60Y6          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    15.596 r  SENSOR2/rpm2_latched_reg[3]_i_3/O[2]
+                         net (fo=5, routed)           1.181    16.777    SENSOR2/rpm2_latched_reg[3]_i_3_n_5
+    SLICE_X63Y7          LUT2 (Prop_lut2_I0_O)        0.301    17.078 r  SENSOR2/rpm2_latched[15]_i_158/O
+                         net (fo=1, routed)           0.000    17.078    SENSOR2/rpm2_latched[15]_i_158_n_0
+    SLICE_X63Y7          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    17.628 r  SENSOR2/rpm2_latched_reg[15]_i_142/CO[3]
+                         net (fo=1, routed)           0.000    17.628    SENSOR2/rpm2_latched_reg[15]_i_142_n_0
+    SLICE_X63Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.742 r  SENSOR2/rpm2_latched_reg[15]_i_119/CO[3]
+                         net (fo=1, routed)           0.000    17.742    SENSOR2/rpm2_latched_reg[15]_i_119_n_0
+    SLICE_X63Y9          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.856 r  SENSOR2/rpm2_latched_reg[15]_i_63/CO[3]
+                         net (fo=1, routed)           0.000    17.856    SENSOR2/rpm2_latched_reg[15]_i_63_n_0
+    SLICE_X63Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.970 r  SENSOR2/rpm2_latched_reg[15]_i_31/CO[3]
+                         net (fo=1, routed)           0.000    17.970    SENSOR2/rpm2_latched_reg[15]_i_31_n_0
+    SLICE_X63Y11         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    18.304 r  SENSOR2/rpm2_latched_reg[15]_i_7/O[1]
+                         net (fo=3, routed)           1.002    19.306    SENSOR2/rpm2_latched_reg[15]_i_7_n_6
+    SLICE_X62Y10         LUT4 (Prop_lut4_I2_O)        0.303    19.609 r  SENSOR2/rpm2_latched[15]_i_47/O
+                         net (fo=1, routed)           0.000    19.609    SENSOR2/rpm2_latched[15]_i_47_n_0
+    SLICE_X62Y10         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    20.159 r  SENSOR2/rpm2_latched_reg[15]_i_10/CO[3]
+                         net (fo=1, routed)           0.000    20.159    SENSOR2/rpm2_latched_reg[15]_i_10_n_0
+    SLICE_X62Y11         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    20.387 r  SENSOR2/rpm2_latched_reg[15]_i_4/CO[2]
+                         net (fo=17, routed)          0.619    21.006    SENSOR2/rpm2_latched_reg[15]_i_4_n_1
+    SLICE_X57Y10         LUT3 (Prop_lut3_I0_O)        0.313    21.319 r  SENSOR2/rpm2_latched[15]_i_61/O
+                         net (fo=6, routed)           0.826    22.145    SENSOR2/rpm2_latched[15]_i_61_n_0
+    SLICE_X57Y11         LUT5 (Prop_lut5_I3_O)        0.124    22.269 r  SENSOR2/rpm2_latched[15]_i_29/O
+                         net (fo=1, routed)           0.000    22.269    SENSOR2/rpm2_latched[15]_i_29_n_0
+    SLICE_X57Y11         CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.570    22.839 r  SENSOR2/rpm2_latched_reg[15]_i_6/CO[2]
+                         net (fo=16, routed)          1.209    24.049    SENSOR2/rpm1
+    SLICE_X55Y8          LUT6 (Prop_lut6_I5_O)        0.313    24.362 r  SENSOR2/rpm2_latched[4]_i_1/O
+                         net (fo=1, routed)           0.000    24.362    rpm2[4]
+    SLICE_X55Y8          FDRE                                         r  rpm2_latched_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 SENSOR2/latched_cnt_reg[5]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            rpm2_latched_reg[6]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.362ns  (logic 11.430ns (46.918%)  route 12.932ns (53.082%))
+  Logic Levels:           26  (CARRY4=14 DSP48E1=1 FDRE=1 LUT2=2 LUT3=3 LUT4=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y6          FDRE                         0.000     0.000 r  SENSOR2/latched_cnt_reg[5]/C
+    SLICE_X55Y6          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  SENSOR2/latched_cnt_reg[5]/Q
+                         net (fo=3, routed)           1.141     1.597    SENSOR2/latched_cnt[5]
+    SLICE_X54Y6          LUT2 (Prop_lut2_I0_O)        0.124     1.721 r  SENSOR2/rpm3_i_16/O
+                         net (fo=1, routed)           0.000     1.721    SENSOR2/rpm3_i_16_n_0
+    SLICE_X54Y6          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     2.234 r  SENSOR2/rpm3_i_4/CO[3]
+                         net (fo=1, routed)           0.000     2.234    SENSOR2/rpm3_i_4_n_0
+    SLICE_X54Y7          CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     2.549 r  SENSOR2/rpm3_i_3/O[3]
+                         net (fo=1, routed)           0.704     3.252    SENSOR2/rpm3_i_3_n_4
+    DSP48_X1Y2           DSP48E1 (Prop_dsp48e1_A[13]_P[4])
+                                                      4.024     7.276 r  SENSOR2/rpm3/P[4]
+                         net (fo=31, routed)          2.275     9.551    SENSOR2/rpm3_n_101
+    SLICE_X58Y1          LUT3 (Prop_lut3_I2_O)        0.124     9.675 r  SENSOR2/rpm2_latched[3]_i_136/O
+                         net (fo=2, routed)           1.149    10.824    SENSOR2/rpm2_latched[3]_i_136_n_0
+    SLICE_X59Y4          CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    11.209 r  SENSOR2/rpm2_latched_reg[3]_i_86/CO[3]
+                         net (fo=1, routed)           0.000    11.209    SENSOR2/rpm2_latched_reg[3]_i_86_n_0
+    SLICE_X59Y5          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    11.448 r  SENSOR2/rpm2_latched_reg[3]_i_42/O[2]
+                         net (fo=3, routed)           0.988    12.436    SENSOR2/rpm2_latched_reg[3]_i_42_n_5
+    SLICE_X62Y4          LUT3 (Prop_lut3_I2_O)        0.302    12.738 r  SENSOR2/rpm2_latched[3]_i_46/O
+                         net (fo=2, routed)           0.817    13.556    SENSOR2/rpm2_latched[3]_i_46_n_0
+    SLICE_X62Y5          LUT5 (Prop_lut5_I1_O)        0.124    13.680 r  SENSOR2/rpm2_latched[3]_i_17/O
+                         net (fo=2, routed)           1.021    14.700    SENSOR2/rpm2_latched[3]_i_17_n_0
+    SLICE_X60Y5          LUT6 (Prop_lut6_I0_O)        0.124    14.824 r  SENSOR2/rpm2_latched[3]_i_21/O
+                         net (fo=1, routed)           0.000    14.824    SENSOR2/rpm2_latched[3]_i_21_n_0
+    SLICE_X60Y5          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    15.357 r  SENSOR2/rpm2_latched_reg[3]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.357    SENSOR2/rpm2_latched_reg[3]_i_5_n_0
+    SLICE_X60Y6          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    15.596 r  SENSOR2/rpm2_latched_reg[3]_i_3/O[2]
+                         net (fo=5, routed)           1.181    16.777    SENSOR2/rpm2_latched_reg[3]_i_3_n_5
+    SLICE_X63Y7          LUT2 (Prop_lut2_I0_O)        0.301    17.078 r  SENSOR2/rpm2_latched[15]_i_158/O
+                         net (fo=1, routed)           0.000    17.078    SENSOR2/rpm2_latched[15]_i_158_n_0
+    SLICE_X63Y7          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    17.628 r  SENSOR2/rpm2_latched_reg[15]_i_142/CO[3]
+                         net (fo=1, routed)           0.000    17.628    SENSOR2/rpm2_latched_reg[15]_i_142_n_0
+    SLICE_X63Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.742 r  SENSOR2/rpm2_latched_reg[15]_i_119/CO[3]
+                         net (fo=1, routed)           0.000    17.742    SENSOR2/rpm2_latched_reg[15]_i_119_n_0
+    SLICE_X63Y9          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.856 r  SENSOR2/rpm2_latched_reg[15]_i_63/CO[3]
+                         net (fo=1, routed)           0.000    17.856    SENSOR2/rpm2_latched_reg[15]_i_63_n_0
+    SLICE_X63Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.970 r  SENSOR2/rpm2_latched_reg[15]_i_31/CO[3]
+                         net (fo=1, routed)           0.000    17.970    SENSOR2/rpm2_latched_reg[15]_i_31_n_0
+    SLICE_X63Y11         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    18.304 r  SENSOR2/rpm2_latched_reg[15]_i_7/O[1]
+                         net (fo=3, routed)           1.002    19.306    SENSOR2/rpm2_latched_reg[15]_i_7_n_6
+    SLICE_X62Y10         LUT4 (Prop_lut4_I2_O)        0.303    19.609 r  SENSOR2/rpm2_latched[15]_i_47/O
+                         net (fo=1, routed)           0.000    19.609    SENSOR2/rpm2_latched[15]_i_47_n_0
+    SLICE_X62Y10         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    20.159 r  SENSOR2/rpm2_latched_reg[15]_i_10/CO[3]
+                         net (fo=1, routed)           0.000    20.159    SENSOR2/rpm2_latched_reg[15]_i_10_n_0
+    SLICE_X62Y11         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    20.387 r  SENSOR2/rpm2_latched_reg[15]_i_4/CO[2]
+                         net (fo=17, routed)          0.619    21.006    SENSOR2/rpm2_latched_reg[15]_i_4_n_1
+    SLICE_X57Y10         LUT3 (Prop_lut3_I0_O)        0.313    21.319 r  SENSOR2/rpm2_latched[15]_i_61/O
+                         net (fo=6, routed)           0.826    22.145    SENSOR2/rpm2_latched[15]_i_61_n_0
+    SLICE_X57Y11         LUT5 (Prop_lut5_I3_O)        0.124    22.269 r  SENSOR2/rpm2_latched[15]_i_29/O
+                         net (fo=1, routed)           0.000    22.269    SENSOR2/rpm2_latched[15]_i_29_n_0
+    SLICE_X57Y11         CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.570    22.839 r  SENSOR2/rpm2_latched_reg[15]_i_6/CO[2]
+                         net (fo=16, routed)          1.209    24.049    SENSOR2/rpm1
+    SLICE_X55Y8          LUT6 (Prop_lut6_I5_O)        0.313    24.362 r  SENSOR2/rpm2_latched[6]_i_1/O
+                         net (fo=1, routed)           0.000    24.362    rpm2[6]
+    SLICE_X55Y8          FDRE                                         r  rpm2_latched_reg[6]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 SENSOR2/latched_cnt_reg[5]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            rpm2_latched_reg[3]/D
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.312ns  (logic 11.430ns (47.014%)  route 12.882ns (52.986%))
+  Logic Levels:           26  (CARRY4=14 DSP48E1=1 FDRE=1 LUT2=2 LUT3=3 LUT4=1 LUT5=2 LUT6=2)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X55Y6          FDRE                         0.000     0.000 r  SENSOR2/latched_cnt_reg[5]/C
+    SLICE_X55Y6          FDRE (Prop_fdre_C_Q)         0.456     0.456 r  SENSOR2/latched_cnt_reg[5]/Q
+                         net (fo=3, routed)           1.141     1.597    SENSOR2/latched_cnt[5]
+    SLICE_X54Y6          LUT2 (Prop_lut2_I0_O)        0.124     1.721 r  SENSOR2/rpm3_i_16/O
+                         net (fo=1, routed)           0.000     1.721    SENSOR2/rpm3_i_16_n_0
+    SLICE_X54Y6          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513     2.234 r  SENSOR2/rpm3_i_4/CO[3]
+                         net (fo=1, routed)           0.000     2.234    SENSOR2/rpm3_i_4_n_0
+    SLICE_X54Y7          CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     2.549 r  SENSOR2/rpm3_i_3/O[3]
+                         net (fo=1, routed)           0.704     3.252    SENSOR2/rpm3_i_3_n_4
+    DSP48_X1Y2           DSP48E1 (Prop_dsp48e1_A[13]_P[4])
+                                                      4.024     7.276 r  SENSOR2/rpm3/P[4]
+                         net (fo=31, routed)          2.275     9.551    SENSOR2/rpm3_n_101
+    SLICE_X58Y1          LUT3 (Prop_lut3_I2_O)        0.124     9.675 r  SENSOR2/rpm2_latched[3]_i_136/O
+                         net (fo=2, routed)           1.149    10.824    SENSOR2/rpm2_latched[3]_i_136_n_0
+    SLICE_X59Y4          CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    11.209 r  SENSOR2/rpm2_latched_reg[3]_i_86/CO[3]
+                         net (fo=1, routed)           0.000    11.209    SENSOR2/rpm2_latched_reg[3]_i_86_n_0
+    SLICE_X59Y5          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    11.448 r  SENSOR2/rpm2_latched_reg[3]_i_42/O[2]
+                         net (fo=3, routed)           0.988    12.436    SENSOR2/rpm2_latched_reg[3]_i_42_n_5
+    SLICE_X62Y4          LUT3 (Prop_lut3_I2_O)        0.302    12.738 r  SENSOR2/rpm2_latched[3]_i_46/O
+                         net (fo=2, routed)           0.817    13.556    SENSOR2/rpm2_latched[3]_i_46_n_0
+    SLICE_X62Y5          LUT5 (Prop_lut5_I1_O)        0.124    13.680 r  SENSOR2/rpm2_latched[3]_i_17/O
+                         net (fo=2, routed)           1.021    14.700    SENSOR2/rpm2_latched[3]_i_17_n_0
+    SLICE_X60Y5          LUT6 (Prop_lut6_I0_O)        0.124    14.824 r  SENSOR2/rpm2_latched[3]_i_21/O
+                         net (fo=1, routed)           0.000    14.824    SENSOR2/rpm2_latched[3]_i_21_n_0
+    SLICE_X60Y5          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533    15.357 r  SENSOR2/rpm2_latched_reg[3]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.357    SENSOR2/rpm2_latched_reg[3]_i_5_n_0
+    SLICE_X60Y6          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    15.596 r  SENSOR2/rpm2_latched_reg[3]_i_3/O[2]
+                         net (fo=5, routed)           1.181    16.777    SENSOR2/rpm2_latched_reg[3]_i_3_n_5
+    SLICE_X63Y7          LUT2 (Prop_lut2_I0_O)        0.301    17.078 r  SENSOR2/rpm2_latched[15]_i_158/O
+                         net (fo=1, routed)           0.000    17.078    SENSOR2/rpm2_latched[15]_i_158_n_0
+    SLICE_X63Y7          CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    17.628 r  SENSOR2/rpm2_latched_reg[15]_i_142/CO[3]
+                         net (fo=1, routed)           0.000    17.628    SENSOR2/rpm2_latched_reg[15]_i_142_n_0
+    SLICE_X63Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.742 r  SENSOR2/rpm2_latched_reg[15]_i_119/CO[3]
+                         net (fo=1, routed)           0.000    17.742    SENSOR2/rpm2_latched_reg[15]_i_119_n_0
+    SLICE_X63Y9          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.856 r  SENSOR2/rpm2_latched_reg[15]_i_63/CO[3]
+                         net (fo=1, routed)           0.000    17.856    SENSOR2/rpm2_latched_reg[15]_i_63_n_0
+    SLICE_X63Y10         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    17.970 r  SENSOR2/rpm2_latched_reg[15]_i_31/CO[3]
+                         net (fo=1, routed)           0.000    17.970    SENSOR2/rpm2_latched_reg[15]_i_31_n_0
+    SLICE_X63Y11         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    18.304 r  SENSOR2/rpm2_latched_reg[15]_i_7/O[1]
+                         net (fo=3, routed)           1.002    19.306    SENSOR2/rpm2_latched_reg[15]_i_7_n_6
+    SLICE_X62Y10         LUT4 (Prop_lut4_I2_O)        0.303    19.609 r  SENSOR2/rpm2_latched[15]_i_47/O
+                         net (fo=1, routed)           0.000    19.609    SENSOR2/rpm2_latched[15]_i_47_n_0
+    SLICE_X62Y10         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    20.159 r  SENSOR2/rpm2_latched_reg[15]_i_10/CO[3]
+                         net (fo=1, routed)           0.000    20.159    SENSOR2/rpm2_latched_reg[15]_i_10_n_0
+    SLICE_X62Y11         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.228    20.387 r  SENSOR2/rpm2_latched_reg[15]_i_4/CO[2]
+                         net (fo=17, routed)          0.619    21.006    SENSOR2/rpm2_latched_reg[15]_i_4_n_1
+    SLICE_X57Y10         LUT3 (Prop_lut3_I0_O)        0.313    21.319 r  SENSOR2/rpm2_latched[15]_i_61/O
+                         net (fo=6, routed)           0.826    22.145    SENSOR2/rpm2_latched[15]_i_61_n_0
+    SLICE_X57Y11         LUT5 (Prop_lut5_I3_O)        0.124    22.269 r  SENSOR2/rpm2_latched[15]_i_29/O
+                         net (fo=1, routed)           0.000    22.269    SENSOR2/rpm2_latched[15]_i_29_n_0
+    SLICE_X57Y11         CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.570    22.839 r  SENSOR2/rpm2_latched_reg[15]_i_6/CO[2]
+                         net (fo=16, routed)          1.160    23.999    SENSOR2/rpm1
+    SLICE_X55Y7          LUT6 (Prop_lut6_I5_O)        0.313    24.312 r  SENSOR2/rpm2_latched[3]_i_1/O
+                         net (fo=1, routed)           0.000    24.312    rpm2[3]
+    SLICE_X55Y7          FDRE                                         r  rpm2_latched_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
 
@@ -442,194 +1005,175 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 STEP1/step_state_reg[0]/C
+  Source:                 SENSOR1/sensor_prev_reg/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP1/step_state_reg[0]/D
+  Destination:            SENSOR1/pulse_rise_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.303ns  (logic 0.186ns (61.324%)  route 0.117ns (38.676%))
-  Logic Levels:           2  (FDRE=1 LUT6=1)
+  Data Path Delay:        0.281ns  (logic 0.227ns (80.665%)  route 0.054ns (19.335%))
+  Logic Levels:           2  (FDRE=1 LUT2=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y64         FDRE                         0.000     0.000 r  STEP1/step_state_reg[0]/C
-    SLICE_X63Y64         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  STEP1/step_state_reg[0]/Q
-                         net (fo=8, routed)           0.117     0.258    STEP1/step_state_reg_n_0_[0]
-    SLICE_X63Y64         LUT6 (Prop_lut6_I5_O)        0.045     0.303 r  STEP1/step_state[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.303    STEP1/step_state[0]_i_1_n_0
-    SLICE_X63Y64         FDRE                                         r  STEP1/step_state_reg[0]/D
+    SLICE_X65Y22         FDRE                         0.000     0.000 r  SENSOR1/sensor_prev_reg/C
+    SLICE_X65Y22         FDRE (Prop_fdre_C_Q)         0.128     0.128 f  SENSOR1/sensor_prev_reg/Q
+                         net (fo=1, routed)           0.054     0.182    SENSOR1/sensor_prev
+    SLICE_X65Y22         LUT2 (Prop_lut2_I1_O)        0.099     0.281 r  SENSOR1/pulse_rise_i_1/O
+                         net (fo=1, routed)           0.000     0.281    SENSOR1/pulse_rise_i_1_n_0
+    SLICE_X65Y22         FDRE                                         r  SENSOR1/pulse_rise_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP2/FSM_sequential_state_reg[0]/C
+  Source:                 SENSOR1/pulse_cnt_reg[14]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP2/tick_cnt_reg[9]/D
+  Destination:            SENSOR1/latched_cnt_reg[14]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.321ns  (logic 0.186ns (58.014%)  route 0.135ns (41.986%))
-  Logic Levels:           2  (FDRE=1 LUT6=1)
+  Data Path Delay:        0.284ns  (logic 0.141ns (49.672%)  route 0.143ns (50.328%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y61         FDRE                         0.000     0.000 r  STEP2/FSM_sequential_state_reg[0]/C
-    SLICE_X53Y61         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  STEP2/FSM_sequential_state_reg[0]/Q
-                         net (fo=49, routed)          0.135     0.276    STEP2/state[0]
-    SLICE_X52Y61         LUT6 (Prop_lut6_I1_O)        0.045     0.321 r  STEP2/tick_cnt[9]_i_1__0/O
-                         net (fo=1, routed)           0.000     0.321    STEP2/tick_cnt__0[9]
-    SLICE_X52Y61         FDRE                                         r  STEP2/tick_cnt_reg[9]/D
+    SLICE_X53Y4          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[14]/C
+    SLICE_X53Y4          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[14]/Q
+                         net (fo=2, routed)           0.143     0.284    SENSOR1/pulse_cnt_reg[14]
+    SLICE_X54Y4          FDRE                                         r  SENSOR1/latched_cnt_reg[14]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP2/calibrated_i_reg/C
+  Source:                 SENSOR1/pulse_cnt_reg[2]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP2/calibrated_i_reg/D
+  Destination:            SENSOR1/latched_cnt_reg[2]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.344ns  (logic 0.186ns (54.126%)  route 0.158ns (45.874%))
-  Logic Levels:           2  (FDRE=1 LUT5=1)
+  Data Path Delay:        0.284ns  (logic 0.141ns (49.672%)  route 0.143ns (50.328%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y59         FDRE                         0.000     0.000 r  STEP2/calibrated_i_reg/C
-    SLICE_X53Y59         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  STEP2/calibrated_i_reg/Q
-                         net (fo=5, routed)           0.101     0.242    STEP2/led_OBUF[0]
-    SLICE_X52Y59         LUT5 (Prop_lut5_I4_O)        0.045     0.287 r  STEP2/calibrated_i_i_1__0/O
-                         net (fo=1, routed)           0.056     0.344    STEP2/calibrated_i_i_1__0_n_0
-    SLICE_X53Y59         FDRE                                         r  STEP2/calibrated_i_reg/D
+    SLICE_X53Y1          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[2]/C
+    SLICE_X53Y1          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[2]/Q
+                         net (fo=2, routed)           0.143     0.284    SENSOR1/pulse_cnt_reg[2]
+    SLICE_X54Y1          FDRE                                         r  SENSOR1/latched_cnt_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 current_gear_reg[0]/C
+  Source:                 SENSOR1/pulse_cnt_reg[6]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            current_gear_reg[0]/D
+  Destination:            SENSOR1/latched_cnt_reg[6]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.356ns  (logic 0.186ns (52.300%)  route 0.170ns (47.700%))
-  Logic Levels:           2  (FDRE=1 LUT6=1)
+  Data Path Delay:        0.284ns  (logic 0.141ns (49.672%)  route 0.143ns (50.328%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X1Y15          FDRE                         0.000     0.000 r  current_gear_reg[0]/C
-    SLICE_X1Y15          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  current_gear_reg[0]/Q
-                         net (fo=14, routed)          0.170     0.311    STEP2/current_gear_reg[0]_0
-    SLICE_X1Y15          LUT6 (Prop_lut6_I5_O)        0.045     0.356 r  STEP2/current_gear[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.356    STEP2_n_4
-    SLICE_X1Y15          FDRE                                         r  current_gear_reg[0]/D
+    SLICE_X53Y2          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[6]/C
+    SLICE_X53Y2          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[6]/Q
+                         net (fo=2, routed)           0.143     0.284    SENSOR1/pulse_cnt_reg[6]
+    SLICE_X54Y2          FDRE                                         r  SENSOR1/latched_cnt_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP2/FSM_sequential_state_reg[1]/C
+  Source:                 SENSOR1/pulse_cnt_reg[0]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP2/tick_cnt_reg[7]/D
+  Destination:            SENSOR1/latched_cnt_reg[0]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.357ns  (logic 0.186ns (52.050%)  route 0.171ns (47.950%))
-  Logic Levels:           2  (FDRE=1 LUT6=1)
+  Data Path Delay:        0.284ns  (logic 0.141ns (49.636%)  route 0.143ns (50.364%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y61         FDRE                         0.000     0.000 r  STEP2/FSM_sequential_state_reg[1]/C
-    SLICE_X53Y61         FDRE (Prop_fdre_C_Q)         0.141     0.141 f  STEP2/FSM_sequential_state_reg[1]/Q
-                         net (fo=50, routed)          0.171     0.312    STEP2/state[1]
-    SLICE_X51Y60         LUT6 (Prop_lut6_I5_O)        0.045     0.357 r  STEP2/tick_cnt[7]_i_1__0/O
-                         net (fo=1, routed)           0.000     0.357    STEP2/tick_cnt__0[7]
-    SLICE_X51Y60         FDRE                                         r  STEP2/tick_cnt_reg[7]/D
+    SLICE_X53Y1          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[0]/C
+    SLICE_X53Y1          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[0]/Q
+                         net (fo=2, routed)           0.143     0.284    SENSOR1/pulse_cnt_reg[0]
+    SLICE_X54Y1          FDRE                                         r  SENSOR1/latched_cnt_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP2/FSM_sequential_state_reg[1]/C
+  Source:                 SENSOR1/pulse_cnt_reg[12]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP2/tick_cnt_reg[8]/D
+  Destination:            SENSOR1/latched_cnt_reg[12]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.360ns  (logic 0.186ns (51.617%)  route 0.174ns (48.383%))
-  Logic Levels:           2  (FDRE=1 LUT6=1)
+  Data Path Delay:        0.285ns  (logic 0.141ns (49.456%)  route 0.144ns (50.544%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y61         FDRE                         0.000     0.000 r  STEP2/FSM_sequential_state_reg[1]/C
-    SLICE_X53Y61         FDRE (Prop_fdre_C_Q)         0.141     0.141 f  STEP2/FSM_sequential_state_reg[1]/Q
-                         net (fo=50, routed)          0.174     0.315    STEP2/state[1]
-    SLICE_X51Y60         LUT6 (Prop_lut6_I5_O)        0.045     0.360 r  STEP2/tick_cnt[8]_i_1__0/O
-                         net (fo=1, routed)           0.000     0.360    STEP2/tick_cnt__0[8]
-    SLICE_X51Y60         FDRE                                         r  STEP2/tick_cnt_reg[8]/D
+    SLICE_X53Y4          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[12]/C
+    SLICE_X53Y4          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[12]/Q
+                         net (fo=2, routed)           0.144     0.285    SENSOR1/pulse_cnt_reg[12]
+    SLICE_X54Y4          FDRE                                         r  SENSOR1/latched_cnt_reg[12]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP2/wait_cnt_reg[0]/C
+  Source:                 SENSOR1/pulse_cnt_reg[13]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP2/wait_cnt_reg[0]/D
+  Destination:            SENSOR1/latched_cnt_reg[13]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.366ns  (logic 0.186ns (50.768%)  route 0.180ns (49.232%))
-  Logic Levels:           2  (FDRE=1 LUT1=1)
+  Data Path Delay:        0.285ns  (logic 0.141ns (49.456%)  route 0.144ns (50.544%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y52         FDRE                         0.000     0.000 r  STEP2/wait_cnt_reg[0]/C
-    SLICE_X53Y52         FDRE (Prop_fdre_C_Q)         0.141     0.141 f  STEP2/wait_cnt_reg[0]/Q
-                         net (fo=4, routed)           0.180     0.321    STEP2/wait_cnt_reg_n_0_[0]
-    SLICE_X53Y52         LUT1 (Prop_lut1_I0_O)        0.045     0.366 r  STEP2/wait_cnt[0]_i_1__0/O
-                         net (fo=1, routed)           0.000     0.366    STEP2/wait_cnt[0]_i_1__0_n_0
-    SLICE_X53Y52         FDRE                                         r  STEP2/wait_cnt_reg[0]/D
+    SLICE_X53Y4          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[13]/C
+    SLICE_X53Y4          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[13]/Q
+                         net (fo=2, routed)           0.144     0.285    SENSOR1/pulse_cnt_reg[13]
+    SLICE_X54Y4          FDRE                                         r  SENSOR1/latched_cnt_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 digit_scan_counter_reg[0]/C
+  Source:                 SENSOR1/pulse_cnt_reg[15]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            digit_scan_counter_reg[0]/D
+  Destination:            SENSOR1/latched_cnt_reg[15]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.366ns  (logic 0.186ns (50.768%)  route 0.180ns (49.232%))
-  Logic Levels:           2  (FDRE=1 LUT1=1)
+  Data Path Delay:        0.285ns  (logic 0.141ns (49.456%)  route 0.144ns (50.544%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X63Y20         FDRE                         0.000     0.000 r  digit_scan_counter_reg[0]/C
-    SLICE_X63Y20         FDRE (Prop_fdre_C_Q)         0.141     0.141 f  digit_scan_counter_reg[0]/Q
-                         net (fo=3, routed)           0.180     0.321    digit_scan_counter[0]
-    SLICE_X63Y20         LUT1 (Prop_lut1_I0_O)        0.045     0.366 r  digit_scan_counter[0]_i_1/O
-                         net (fo=1, routed)           0.000     0.366    p_1_in[0]
-    SLICE_X63Y20         FDRE                                         r  digit_scan_counter_reg[0]/D
+    SLICE_X53Y4          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[15]/C
+    SLICE_X53Y4          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[15]/Q
+                         net (fo=2, routed)           0.144     0.285    SENSOR1/pulse_cnt_reg[15]
+    SLICE_X54Y4          FDRE                                         r  SENSOR1/latched_cnt_reg[15]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP2/current_pos_reg[0]/C
+  Source:                 SENSOR1/pulse_cnt_reg[1]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP2/current_pos_reg[0]/D
+  Destination:            SENSOR1/latched_cnt_reg[1]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.366ns  (logic 0.186ns (50.759%)  route 0.180ns (49.241%))
-  Logic Levels:           2  (FDRE=1 LUT1=1)
+  Data Path Delay:        0.285ns  (logic 0.141ns (49.456%)  route 0.144ns (50.544%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X57Y65         FDRE                         0.000     0.000 r  STEP2/current_pos_reg[0]/C
-    SLICE_X57Y65         FDRE (Prop_fdre_C_Q)         0.141     0.141 f  STEP2/current_pos_reg[0]/Q
-                         net (fo=5, routed)           0.180     0.321    STEP2/current_pos_reg_n_0_[0]
-    SLICE_X57Y65         LUT1 (Prop_lut1_I0_O)        0.045     0.366 r  STEP2/current_pos[0]_i_1__0/O
-                         net (fo=1, routed)           0.000     0.366    STEP2/current_pos[0]_i_1__0_n_0
-    SLICE_X57Y65         FDRE                                         r  STEP2/current_pos_reg[0]/D
+    SLICE_X53Y1          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[1]/C
+    SLICE_X53Y1          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[1]/Q
+                         net (fo=2, routed)           0.144     0.285    SENSOR1/pulse_cnt_reg[1]
+    SLICE_X54Y1          FDRE                                         r  SENSOR1/latched_cnt_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 STEP1/homing_steps_reg[20]/C
+  Source:                 SENSOR1/pulse_cnt_reg[3]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            STEP1/homing_steps_reg[20]/D
+  Destination:            SENSOR1/latched_cnt_reg[3]/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.368ns  (logic 0.249ns (67.612%)  route 0.119ns (32.388%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        0.285ns  (logic 0.141ns (49.456%)  route 0.144ns (50.544%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X61Y64         FDRE                         0.000     0.000 r  STEP1/homing_steps_reg[20]/C
-    SLICE_X61Y64         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  STEP1/homing_steps_reg[20]/Q
-                         net (fo=3, routed)           0.119     0.260    STEP1/homing_steps_reg_n_0_[20]
-    SLICE_X61Y64         CARRY4 (Prop_carry4_S[3]_O[3])
-                                                      0.108     0.368 r  STEP1/homing_steps_reg[20]_i_1/O[3]
-                         net (fo=1, routed)           0.000     0.368    STEP1/in12[20]
-    SLICE_X61Y64         FDRE                                         r  STEP1/homing_steps_reg[20]/D
+    SLICE_X53Y1          FDRE                         0.000     0.000 r  SENSOR1/pulse_cnt_reg[3]/C
+    SLICE_X53Y1          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  SENSOR1/pulse_cnt_reg[3]/Q
+                         net (fo=2, routed)           0.144     0.285    SENSOR1/pulse_cnt_reg[3]
+    SLICE_X54Y1          FDRE                                         r  SENSOR1/latched_cnt_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
 
