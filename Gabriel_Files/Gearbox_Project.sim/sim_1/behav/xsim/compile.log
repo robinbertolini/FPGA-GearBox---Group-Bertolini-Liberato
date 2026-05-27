@@ -1,0 +1,2 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/testbench_project.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'main_motor_top_pwm_tb'

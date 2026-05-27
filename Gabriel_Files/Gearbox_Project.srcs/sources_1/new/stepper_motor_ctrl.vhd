@@ -27,7 +27,6 @@ architecture rtl of stepper_position_controller is
 
     type state_t is (IDLE, CALIB_MOVE, CALIB_WAIT, POST_HOMING_MOVE, POST_HOMING_WAIT, READY, MOVE);
     signal state : state_t := IDLE;
-
     type step_state_t is (S0,S1,S2,S3,S4,S5,S6,S7);
     signal step_state : step_state_t := S0;
 
@@ -35,7 +34,7 @@ architecture rtl of stepper_position_controller is
     signal tick_cnt     : integer := 0;
     signal wait_cnt     : integer := 0;
     signal homing_steps : integer := 0;
-    signal backoff_steps: integer := 0;   -- contatore passi post-homing
+    signal backoff_steps: integer := 0;
 
     signal calibrated_i : std_logic := '0';
 begin
@@ -55,7 +54,6 @@ begin
                 calibrated_i <= '0';
             else
                 case state is
-
                     when IDLE =>
                         if start_calibration = '1' then
                             state <= CALIB_MOVE;
@@ -63,7 +61,6 @@ begin
                             homing_steps <= 0;
                         end if;
 
-                    -- Movimento verso il muro (homing)
                     when CALIB_MOVE =>
                         if tick_cnt >= (CLK_FREQ_HZ / HOMING_STEP_HZ) then
                             tick_cnt <= 0;
@@ -88,14 +85,13 @@ begin
                             tick_cnt <= tick_cnt + 1;
                         end if;
 
-                    -- Pausa dopo il muro
                     when CALIB_WAIT =>
                         if wait_cnt >= (CLK_FREQ_HZ/10) then  -- 100 ms
                             if POST_HOMING_OFFSET > 0 then
                                 state <= POST_HOMING_MOVE;
                                 tick_cnt <= 0;
                                 backoff_steps <= 0;
-                                current_pos <= 0;   -- ora siamo a posizione 0
+                                current_pos <= 0;
                             else
                                 current_pos <= 0;
                                 calibrated_i <= '1';
@@ -105,11 +101,9 @@ begin
                             wait_cnt <= wait_cnt + 1;
                         end if;
 
-                    -- Movimento di back-off (allontanamento dal muro)
                     when POST_HOMING_MOVE =>
                         if tick_cnt >= (CLK_FREQ_HZ / HOMING_STEP_HZ) then
                             tick_cnt <= 0;
-                            -- direzione opposta a quella di homing
                             act_dir := not (HOMING_DIR xor invert_direction);
                             if act_dir = '1' then
                                 case step_state is
@@ -123,7 +117,7 @@ begin
                                 end case;
                             end if;
                             backoff_steps <= backoff_steps + 1;
-                            current_pos <= current_pos + 1;   -- incrementiamo la posizione
+                            current_pos <= current_pos + 1;
                             if backoff_steps >= POST_HOMING_OFFSET - 1 then
                                 state <= POST_HOMING_WAIT;
                                 wait_cnt <= 0;
@@ -132,7 +126,6 @@ begin
                             tick_cnt <= tick_cnt + 1;
                         end if;
 
-                    -- Pausa dopo back-off
                     when POST_HOMING_WAIT =>
                         if wait_cnt >= (CLK_FREQ_HZ/10) then
                             calibrated_i <= '1';
@@ -141,14 +134,12 @@ begin
                             wait_cnt <= wait_cnt + 1;
                         end if;
 
-                    -- Pronto per i comandi
                     when READY =>
                         if target_position /= current_pos then
                             state <= MOVE;
                             tick_cnt <= 0;
                         end if;
 
-                    -- Movimento normale verso un target
                     when MOVE =>
                         if current_pos = target_position then
                             state <= READY;
@@ -179,15 +170,11 @@ begin
                         else
                             tick_cnt <= tick_cnt + 1;
                         end if;
-
-                    when others =>
-                        state <= IDLE;
                 end case;
             end if;
         end if;
     end process;
 
-    -- Decodifica step
     process(step_state) begin
         case step_state is
             when S0=>coils<="1000"; when S1=>coils<="1100"; when S2=>coils<="0100"; when S3=>coils<="0110";

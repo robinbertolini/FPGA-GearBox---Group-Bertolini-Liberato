@@ -26,7 +26,7 @@ end main_motor_top_pwm;
 architecture rtl of main_motor_top_pwm is
 
     ----------------------------------------------------------------------------
-    -- PARAMETRI TARATI SPERIMENTALMENTE
+    -- PARAMETERS SET SPERIMENTALLY
     ----------------------------------------------------------------------------
     constant POST_HOMING_OFFSET : integer := 550;   -- rientro dopo il muro (neutro)
     constant STEPS_X            : integer := POST_HOMING_OFFSET;
@@ -35,7 +35,7 @@ architecture rtl of main_motor_top_pwm is
     constant GLOBAL_CALIB_DIR : std_logic := '1';
 
     ----------------------------------------------------------------------------
-    -- COMPONENTI
+    -- COMPONENTS
     ----------------------------------------------------------------------------
     component stepper_position_controller is
         generic (
@@ -296,9 +296,9 @@ begin
             if any_valid = '1' then
                 rpm_int := to_integer(unsigned(selected_rpm)) mod 1000;
                 case digit_select is
-                    when 1 => digit := rpm_int mod 10;          -- unità
-                    when 2 => digit := (rpm_int / 10) mod 10;   -- decine
-                    when 3 => digit := (rpm_int / 100) mod 10;  -- centinaia
+                    when 1 => digit := rpm_int mod 10;          -- UNIT
+                    when 2 => digit := (rpm_int / 10) mod 10;   -- DECS
+                    when 3 => digit := (rpm_int / 100) mod 10;  -- HUNDREDS
                     when others => digit := 0;
                 end case;
                 seg <= bcd_to_seg(digit);

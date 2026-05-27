@@ -1,6 +1,11 @@
 0.7
 2020.2
-Mar 19 2026
-19:50:51
-C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/dc_driver_pwm.vhd,1779805867,vhdl,,,,dc_driver_pwm,,,,,,,,
+Nov 14 2025
+19:37:27
+C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/dc_driver_pwm_tb.vhd,1779868900,vhdl,,,,dc_driver_pwm_tb,,,,,,,,
+C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/testbench_project.vhd,1779871963,vhdl,,,,main_motor_top_pwm_tb,,,,,,,,
+C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/dc_driver_pwm.vhd,1779805867,vhdl,C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/dc_driver_pwm_tb.vhd,,,dc_driver_pwm,,,,,,,,
+C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/hc020k.vhd,1779807520,vhdl,,,,hc020k,,,,,,,,
+C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/main_motor_top_pwm.vhd,1779868233,vhdl,C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/testbench_project.vhd,,,main_motor_top_pwm,,,,,,,,
 C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/pwm_generator.vhd,1778765213,vhdl,,,,pwm_generator,,,,,,,,
+C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/stepper_motor_ctrl.vhd,1779871271,vhdl,,,,stepper_position_controller,,,,,,,,
