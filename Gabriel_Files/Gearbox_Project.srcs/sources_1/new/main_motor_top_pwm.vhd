@@ -29,6 +29,7 @@ entity main_motor_top_pwm is
         an          : out STD_LOGIC_VECTOR(3 downto 0);
         dp          : out STD_LOGIC
     );
+    
 end main_motor_top_pwm;
 
 architecture rtl of main_motor_top_pwm is
