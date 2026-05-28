@@ -77,7 +77,24 @@ architecture rtl of main_motor_top_pwm is
             valid     : out std_logic
         );
     end component;
-
+    
+    component dc_driver_pwm is
+        generic (
+            CLK_FREQ_HZ : positive := 100_000_000;
+            PWM_FREQ_HZ : positive := 2000
+        );
+        port (
+            clk        : in  std_logic;
+            rst        : in  std_logic;
+            enable     : in  std_logic;
+            fixed_dir  : in  std_logic;
+            duty_cycle : in  unsigned(7 downto 0);
+            motor_a    : out std_logic;
+            motor_b    : out std_logic
+        );
+    end component;
+    
+    
     ----------------------------------------------------------------------------
     -- INTERNAL SIGNALS
     ----------------------------------------------------------------------------
@@ -102,7 +119,12 @@ architecture rtl of main_motor_top_pwm is
     -- 7-segment scan
     signal digit_scan_counter : integer range 0 to 99999 := 0;
     signal digit_select       : integer range 0 to 3     := 0;
-
+    
+    -- PWM speed control
+    signal sw0_prev   : std_logic := '0';          -- edge detection
+    signal dc_step    : integer range 0 to 4 := 0; -- 0=0% 1=25% 2=50% 3=75% 4=100%
+    signal dc_duty    : unsigned(7 downto 0) := (others => '0');
+    
     -- BCD → segments (active-low, common-anode)
     function bcd_to_seg(bcd : integer range 0 to 9) return std_logic_vector is
     begin
@@ -127,8 +149,53 @@ begin
     ----------------------------------------------------------------------------
     -- DC MOTOR  (IN1=JXADC1 always high, IN2=JXADC2 follows sw(0))
     ----------------------------------------------------------------------------
-    JXADC(0) <= '1';
-    JXADC(1) <= sw(0);
+    --JXADC(0) <= '1';
+    --JXADC(1) <= sw(0);
+
+    --New DC PWM
+    ----------------------------------------------------------------------------
+    -- DC MOTOR: sw(0) rising edge steps through 0→25→50→75→100→0% duty cycle
+    ----------------------------------------------------------------------------
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if master_reset = '1' then
+                sw0_prev <= '0';
+                dc_step  <= 0;
+                dc_duty  <= (others => '0');
+            else
+                sw0_prev <= sw(0);
+                -- Detect rising edge on sw(0)
+                if sw(0) = '1' and sw0_prev = '0' then
+                    if dc_step = 4 then
+                        dc_step <= 0;
+                        dc_duty <= to_unsigned(0, 8);
+                    else
+                        dc_step <= dc_step + 1;
+                        case dc_step + 1 is
+                            when 1 => dc_duty <= to_unsigned(64,  8);  -- 25%
+                            when 2 => dc_duty <= to_unsigned(128, 8);  -- 50%
+                            when 3 => dc_duty <= to_unsigned(191, 8);  -- 75%
+                            when 4 => dc_duty <= to_unsigned(255, 8);  -- 100%
+                            when others => dc_duty <= (others => '0');
+                        end case;
+                    end if;
+                end if;
+            end if;
+        end if;
+    end process;
+    
+    DC_MOTOR: dc_driver_pwm
+        generic map (CLK_FREQ_HZ => 100_000_000, PWM_FREQ_HZ => 2000)
+        port map (
+            clk        => clk,
+            rst        => master_reset,
+            enable     => '1',        -- always enabled; duty=0 stops the motor
+            fixed_dir  => '1',        -- forward only
+            duty_cycle => dc_duty,
+            motor_a    => JXADC(0),   -- IN1
+            motor_b    => JXADC(1)    -- IN2
+        );
 
     ----------------------------------------------------------------------------
     -- STEPPER COILS → JA header
@@ -222,7 +289,13 @@ begin
             busy              => s2_busy,
             coils             => step2_coils       -- routed to JA[7:4]
         );
-
+    
+    --
+    --DC PWM
+    --
+    
+    
+    
     ----------------------------------------------------------------------------
     -- SPEED SENSORS (unchanged logic)
     ----------------------------------------------------------------------------
@@ -233,7 +306,8 @@ begin
     SENSOR2: hc020k
         generic map (CLK_FREQ_HZ => 100_000_000, MEASUREMENT_MS => 500, SLOTS_PER_REV => 22)
         port map (clk => clk, rst => master_reset, sensor_in => sensor_in2, rpm => rpm2, valid => valid2);
-
+    
+ 
     -- Latch RPM values on valid pulses
     process(clk)
     begin
@@ -270,26 +344,50 @@ begin
     end process;
 
     ----------------------------------------------------------------------------
-    -- TARGET POSITION CALCULATION (unchanged)
+    -- TARGET POSITION CALCULATION (OLD)
     ----------------------------------------------------------------------------
+    --process(clk)
+    --begin
+        --if rising_edge(clk) then
+           --if s1_calibrated = '1' and s2_calibrated = '1' then
+            --    case current_gear is
+             --       when 1 => s1_target <= STEPS_X + GEAR_STEP; s2_target <= STEPS_X + GEAR_STEP;
+             --       when 2 => s1_target <= STEPS_X + GEAR_STEP; s2_target <= STEPS_X - GEAR_STEP;
+             --       when 3 => s1_target <= STEPS_X - GEAR_STEP; s2_target <= STEPS_X - GEAR_STEP;
+             --       when 4 => s1_target <= STEPS_X - GEAR_STEP; s2_target <= STEPS_X + GEAR_STEP;
+             --       when others => s1_target <= STEPS_X; s2_target <= STEPS_X;
+              --  end case;
+           -- else
+        --        s1_target <= 0;
+         --       s2_target <= 0;
+       --     end if;
+       -- end if;
+    --end process;
+    
+    -- TARGET POSITION CALCULATION  (only this process changes)
     process(clk)
-    begin
-        if rising_edge(clk) then
-            if s1_calibrated = '1' and s2_calibrated = '1' then
-                case current_gear is
-                    when 1 => s1_target <= STEPS_X + GEAR_STEP; s2_target <= STEPS_X + GEAR_STEP;
-                    when 2 => s1_target <= STEPS_X + GEAR_STEP; s2_target <= STEPS_X - GEAR_STEP;
-                    when 3 => s1_target <= STEPS_X - GEAR_STEP; s2_target <= STEPS_X - GEAR_STEP;
-                    when 4 => s1_target <= STEPS_X - GEAR_STEP; s2_target <= STEPS_X + GEAR_STEP;
-                    when others => s1_target <= STEPS_X; s2_target <= STEPS_X;
-                end case;
-            else
-                s1_target <= 0;
-                s2_target <= 0;
-            end if;
+        begin
+             if rising_edge(clk) then
+                if s1_calibrated = '1' and s2_calibrated = '1' then
+                   case current_gear is
+                       -- Gear 1: 
+                      when 1 => s1_target <= STEPS_X - GEAR_STEP; s2_target <= STEPS_X - GEAR_STEP;
+                     -- Gear 2: 
+                       when 2 => s1_target <= STEPS_X - GEAR_STEP; s2_target <= STEPS_X + GEAR_STEP;
+                       -- Gear 3: 
+                       when 3 => s1_target <= STEPS_X + GEAR_STEP; s2_target <= STEPS_X + GEAR_STEP;
+                     -- Gear 4: )
+                      when 4 => s1_target <= STEPS_X + GEAR_STEP; s2_target <= STEPS_X - GEAR_STEP;
+                     -- Neutral: 
+                      when others => s1_target <= STEPS_X; s2_target <= STEPS_X;
+            end case;
+        else
+            s1_target <= 0;
+            s2_target <= 0;
         end if;
-    end process;
-
+    end if;
+end process;
+    
     ----------------------------------------------------------------------------
     -- 7-SEGMENT DISPLAY  - 4 digits, full decimal RPM  (0 - 9999)
     --   an[0] rightmost = units

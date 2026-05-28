@@ -118,7 +118,7 @@ begin
                     -- ── End of window: compute and latch RPM ─────────────────
                     -- RPM = (pulses / SLOTS_PER_REV) × (60 000 / MEASUREMENT_MS)
                     --     = pulse_cnt × SCALE / SLOTS_PER_REV
-                    rpm_calc := (pulse_cnt * SCALE) / SLOTS_PER_REV;
+                    rpm_calc := (pulse_cnt * SCALE * 5) / (SLOTS_PER_REV * 4);
 
                     if rpm_calc > 9999 then
                         rpm_calc := 9999;

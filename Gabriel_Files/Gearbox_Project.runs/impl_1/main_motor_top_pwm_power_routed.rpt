@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date             : Thu May 28 11:38:05 2026
+| Date             : Thu May 28 15:06:43 2026
 | Host             : DESKTOP-UFF887S running 64-bit major release  (build 9200)
 | Command          : report_power -file main_motor_top_pwm_power_routed.rpt -pb main_motor_top_pwm_power_summary_routed.pb -rpx main_motor_top_pwm_power_routed.rpx
 | Design           : main_motor_top_pwm
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.149        |
+| Total On-Chip Power (W)  | 0.157        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.077        |
+| Dynamic (W)              | 0.086        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 84.3         |
-| Junction Temperature (C) | 25.7         |
+| Max Ambient (C)          | 84.2         |
+| Junction Temperature (C) | 25.8         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.004 |        3 |       --- |             --- |
-| Slice Logic    |     0.020 |     3827 |       --- |             --- |
-|   LUT as Logic |     0.018 |     2245 |     20800 |           10.79 |
-|   CARRY4       |     0.002 |      503 |      8150 |            6.17 |
-|   Register     |    <0.001 |      577 |     41600 |            1.39 |
+| Slice Logic    |     0.023 |     4256 |       --- |             --- |
+|   LUT as Logic |     0.021 |     2528 |     20800 |           12.15 |
+|   CARRY4       |     0.002 |      570 |      8150 |            6.99 |
+|   Register     |    <0.001 |      602 |     41600 |            1.45 |
 |   F7/F8 Muxes  |    <0.001 |        4 |     32600 |            0.01 |
-|   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |     0.020 |     2949 |       --- |             --- |
-| DSPs           |     0.002 |        2 |        90 |            2.22 |
+|   Others       |     0.000 |       19 |       --- |             --- |
+| Signals        |     0.024 |     3326 |       --- |             --- |
+| DSPs           |     0.002 |        3 |        90 |            3.33 |
 | I/O            |     0.032 |       49 |       106 |           46.23 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.149 |          |           |                 |
+| Total          |     0.157 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +73,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.055 |       0.045 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.063 |       0.053 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.014 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.010 |       0.009 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -142,9 +142,11 @@ Table of Contents
 +--------------------+-----------+
 | Name               | Power (W) |
 +--------------------+-----------+
-| main_motor_top_pwm |     0.077 |
-|   SENSOR1          |     0.010 |
-|   SENSOR2          |     0.010 |
+| main_motor_top_pwm |     0.086 |
+|   DC_MOTOR         |     0.005 |
+|     U_PWM          |     0.005 |
+|   SENSOR1          |     0.011 |
+|   SENSOR2          |     0.011 |
 |   STEP1            |     0.003 |
 |   STEP2            |     0.003 |
 +--------------------+-----------+
