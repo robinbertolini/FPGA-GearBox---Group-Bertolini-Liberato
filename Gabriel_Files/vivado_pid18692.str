@@ -153,3 +153,702 @@ Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 // [Engine Memory]: 1,099 MB (+9324kb) [00:00:21]
 // WARNING: HEventQueue.dispatchEvent() is taking  1019 ms.
 // [Engine Memory]: 1,162 MB (+8568kb) [00:00:22]
+// Project name: Gearbox_Project; location: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files; part: xc7a35tcpg236-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:35 ; elapsed = 00:00:13 . Memory (MB): peak = 1781.695 ; gain = 334.504 
+dismissDialog("Open Project"); // bk (Open Project Progress)
+// [GUI Memory]: 143 MB (+9375kb) [00:00:24]
+// TclEventType: DG_GRAPH_GENERATED
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 21, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Tcl Message: update_compile_order -fileset sources_1 
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel", "Synthesis is Out-of-date"); // f (RDIResource.BaseDialog_CANCEL)
+dismissDialog("Synthesis is Out-of-date"); // x (dialog0)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 22, true); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree) - Node
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Tcl (Dont Echo) Command: 'load_features labtools'
+// TclEventType: LOAD_FEATURE
+// TclEventType: HW_SESSION_OPEN
+// WARNING: HEventQueue.dispatchEvent() is taking  1408 ms.
+// Tcl Message: open_hw_manager 
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // x (PAResourceOtoP.PAViews_PROJECT_SUMMARY, PlanAheadTabProject Summary)
+dismissDialog("Open Hardware Manager"); // bk (Open Hardware Manager Progress)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Open Target]", 23, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HW_TARGET
+selectMenuItem(PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, "Auto Connect"); // ap (PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, auto_connect_target_menu)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Run Command: PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET
+// Tcl Message: connect_hw_server -allow_non_jtag 
+// Tcl Message: INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121 
+// Tcl Message: INFO: [Labtools 27-2222] Launching hw_server... 
+// Tcl Message: INFO: [Labtools 27-2221] Launch Output:  ****** Xilinx hw_server v2025.2   **** Build date : Oct 28 2025 at 10:03:13     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.   
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0 INFO: [Labtools 27-3417] Launching cs_server... 
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-2221] Launch Output:   ******** Xilinx cs_server v2025.2.0   ****** Build date   : Nov 14 2025-00:16:52     **** Build number : 2025.2.1763075812       ** Copyright 2017-2022 Xilinx, Inc. All Rights Reserved.       ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.    
+// Tcl Message: connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1781.695 ; gain = 0.000 
+// TclEventType: HW_TARGET_CHANGE
+// TclEventType: HW_TARGET_CLOSE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_ADD
+// TclEventType: HW_TARGET_UPDATE
+// Tcl Message: open_hw_target 
+// Tcl Message: INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183BA27DBA 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/main_motor_top_pwm.bit} [get_hw_devices xc7a35t_0] 
+// Tcl Message: current_hw_device [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1435] Device xc7a35t (JTAG device index = 0) is not programmed (DONE status = 0). 
+dismissDialog("Auto Connect"); // bk (Auto Connect Progress)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,201 MB. GUI used memory: 75 MB. Current time: 5/28/26, 2:16:19 PM CEST
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Program Device]", 24, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectMenuItem((HResource) null, "xc7a35t_0"); // ap (xc7a35t_0)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program", "Program Device"); // f (PAResourceOtoP.ProgramFpgaDialog_PROGRAM, RDIResource.BaseDialog_OK)
+dismissDialog("Program Device"); // aT (dialog1)
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a35t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/main_motor_top_pwm.bit} [get_hw_devices xc7a35t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported soft debug core(s) in it. 
+dismissDialog("Program Device"); // bk (Program Device Progress)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,204 MB. GUI used memory: 76 MB. Current time: 5/28/26, 2:17:00 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,204 MB. GUI used memory: 75 MB. Current time: 5/28/26, 2:17:40 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,204 MB. GUI used memory: 75 MB. Current time: 5/28/26, 2:18:20 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,204 MB. GUI used memory: 75 MB. Current time: 5/28/26, 2:19:00 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,204 MB. GUI used memory: 76 MB. Current time: 5/28/26, 2:19:40 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,204 MB. GUI used memory: 76 MB. Current time: 5/28/26, 2:20:21 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,227 MB. GUI used memory: 77 MB. Current time: 5/28/26, 2:21:01 PM CEST
+// Elapsed time: 277 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+// [Engine Memory]: 1,315 MB (+99596kb) [00:05:28]
+// WARNING: HEventQueue.dispatchEvent() is taking  2986 ms.
+selectButton((HResource) null, "RDIResource.FrameControlsPanel_CLOSE_PlanAheadTabBaseWorkspace_JideTabbedPane"); // P.a (RDIResource.FrameControlsPanel_CLOSE_PlanAheadTabBaseWorkspace_JideTabbedPane)
+// PAResourceOtoP.PAViews_PROJECT_SUMMARY: Project Summary: close view
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // x (PAResourceOtoP.PAViews_PROJECT_SUMMARY, PlanAheadTabProject Summary)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:21:42 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:22:22 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:23:03 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:23:43 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:24:24 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:25:04 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:25:45 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:26:25 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:27:06 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:27:46 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 78 MB. Current time: 5/28/26, 2:28:27 PM CEST
+// PAPropertyPanels.initPanels (main_motor_top_pwm.vhd) elapsed time: 0.5s
+// Elapsed time: 470 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2, true, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2, true, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click - Node
+selectCodeEditor("main_motor_top_pwm.vhd", 425, 249); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 505, 167); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'c'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 507, 170); // ae (main_motor_top_pwm.vhd)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd), STEP1 : stepper_position_controller(rtl) (stepper_motor_ctrl.vhd)]", 3, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd), STEP1 : stepper_position_controller(rtl) (stepper_motor_ctrl.vhd)]", 3, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+selectCodeEditor("stepper_motor_ctrl.vhd", 174, 97); // ae (stepper_motor_ctrl.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 80 MB. Current time: 5/28/26, 2:29:07 PM CEST
+typeControlKey((HResource) null, "stepper_motor_ctrl.vhd", 'c'); // ae (stepper_motor_ctrl.vhd)
+selectCodeEditor("stepper_motor_ctrl.vhd", 177, 97); // ae (stepper_motor_ctrl.vhd)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd), SENSOR1 : hc020k(rtl) (hc020k.vhd)]", 5, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd), SENSOR1 : hc020k(rtl) (hc020k.vhd)]", 5, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+selectCodeEditor("hc020k.vhd", 164, 153); // ae (hc020k.vhd)
+typeControlKey((HResource) null, "hc020k.vhd", 'c'); // ae (hc020k.vhd)
+selectCodeEditor("hc020k.vhd", 165, 154); // ae (hc020k.vhd)
+typeControlKey((HResource) null, "hc020k.vhd", 'c'); // ae (hc020k.vhd)
+selectCodeEditor("hc020k.vhd", 165, 154); // ae (hc020k.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 81 MB. Current time: 5/28/26, 2:29:47 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 81 MB. Current time: 5/28/26, 2:30:28 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 81 MB. Current time: 5/28/26, 2:31:08 PM CEST
+// Elapsed time: 114 seconds
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm", true); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+applyEnter(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "rpm"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+selectCodeEditor("hc020k.vhd", 481, 375); // ae (hc020k.vhd)
+selectCodeEditor("hc020k.vhd", 485, 366); // ae (hc020k.vhd)
+selectButton("ClipboardsDialog.N_Cancel", "Cancel", "Select a Previous Clipboard to Paste"); // JButton (ClipboardsDialog.N_Cancel)
+typeControlKey((HResource) null, "hc020k.vhd", 'v'); // ae (hc020k.vhd)
+typeControlKey((HResource) null, "hc020k.vhd", 'v'); // ae (hc020k.vhd)
+selectCodeEditor("hc020k.vhd", 381, 400); // ae (hc020k.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 81 MB. Current time: 5/28/26, 2:31:48 PM CEST
+// Elapsed time: 28 seconds
+selectCodeEditor("hc020k.vhd", 264, 132); // ae (hc020k.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "main_motor_top_pwm.vhd", 0); // m (PlanAheadTabBaseWorkspace_JideTabbedPane)
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 16m:03s
+// TclEventType: DG_GRAPH_GENERATED
+// [GUI Memory]: 158 MB (+7757kb) [00:16:24]
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 16m:05s
+// Elapsed time: 23 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 28, 182); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 26, 199); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 53, 221); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 54, 214); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 79, 233); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 87, 249); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 90, 270); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 89, 288); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 90, 303); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 90, 316); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:32:29 PM CEST
+selectCodeEditor("main_motor_top_pwm.vhd", 90, 329); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 91, 339); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 88, 352); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 100, 324); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 100, 345); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 74, 368); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 64, 391); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 59, 386); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 50, 432); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 48, 423); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 27, 449); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 179, 473); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 355, 147); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 301, 148); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 301, 148, false, false, false, false, true); // ae (main_motor_top_pwm.vhd) - Double Click
+selectCodeEditor("main_motor_top_pwm.vhd", 269, 472); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'v'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 4, 132); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 166, 146); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 16m:55s
+selectButton(PAResourceEtoH.FindAndReplaceAllDialog_CLOSE, "Close", "Find in Files"); // h (PAResourceEtoH.FindAndReplaceAllDialog_CLOSE)
+// TclEventType: DG_GRAPH_GENERATED
+selectCodeEditor("main_motor_top_pwm.vhd", 347, 221); // ae (main_motor_top_pwm.vhd)
+// Tcl Message: ERROR: [Common 17-180] Spawn failed: The operation completed successfully.  
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 16m:57s
+selectCodeEditor("main_motor_top_pwm.vhd", 406, 102); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:33:09 PM CEST
+// Elapsed time: 17 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 1, 129); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 1, 148); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 19, 164); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 26, 178); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 33, 201); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 36, 212); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 40, 221); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 48, 251); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 23, 288); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 28, 275); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 37, 261); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 38, 282); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 38, 303); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 24, 322); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 23, 342); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 14, 332); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 14, 365); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 146, 380); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: ERROR: [Common 17-180] Spawn failed: The operation completed successfully.  
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 17m:35s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 17m:37s
+selectCodeEditor("main_motor_top_pwm.vhd", 580, 271); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 488, 270); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 560, 262); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 548, 300); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 590, 324); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 430, 368); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 545, 367); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 443, 404); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:33:50 PM CEST
+selectCodeEditor("main_motor_top_pwm.vhd", 318, 453); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 17m:57s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 17m:59s
+selectCodeEditor("main_motor_top_pwm.vhd", 346, 311); // ae (main_motor_top_pwm.vhd)
+// Elapsed time: 10 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 15, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.srcs/utils_1/imports/synth_1/main_motor_top_pwm.dcp with file C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/synth_1/main_motor_top_pwm.dcp 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:34:09 PM CEST
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: launch_runs synth_1 -jobs 8 
+// Tcl Message: [Thu May 28 14:34:09 2026] Launched synth_1... Run output will be captured here: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bk (Starting Design Runs Progress)
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:34:31 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:35:11 PM CEST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:35:51 PM CEST
+// Elapsed time: 105 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 18, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:35:55 PM CEST
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: launch_runs impl_1 -jobs 8 
+// Tcl Message: [Thu May 28 14:35:55 2026] Launched impl_1... Run output will be captured here: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bk (Starting Design Runs Progress)
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:36:31 PM CEST
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 82 MB. Current time: 5/28/26, 2:37:11 PM CEST
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 83 MB. Current time: 5/28/26, 2:37:52 PM CEST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 83 MB. Current time: 5/28/26, 2:38:32 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 83 MB. Current time: 5/28/26, 2:39:12 PM CEST
+// Elapsed time: 217 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 21, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 84 MB. Current time: 5/28/26, 2:39:33 PM CEST
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 8 
+// Tcl Message: [Thu May 28 14:39:33 2026] Launched impl_1... Run output will be captured here: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 83 MB. Current time: 5/28/26, 2:39:53 PM CEST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 84 MB. Current time: 5/28/26, 2:40:33 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 84 MB. Current time: 5/28/26, 2:41:14 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 84 MB. Current time: 5/28/26, 2:41:54 PM CEST
+// Elapsed time: 176 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_REPORTS_WINDOW, "View Reports"); // a (PAResourceCommand.PACommandNames_REPORTS_WINDOW)
+selectButton(RDIResource.BaseDialog_OK, "OK", "Bitstream Generation Completed"); // f (RDIResource.BaseDialog_OK)
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Bitstream Generation Completed"); // W.a (dialog4)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Program Device]", 24, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectMenuItem((HResource) null, "xc7a35t_0"); // ap (xc7a35t_0)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program", "Program Device"); // f (PAResourceOtoP.ProgramFpgaDialog_PROGRAM, RDIResource.BaseDialog_OK)
+dismissDialog("Program Device"); // aT (dialog5)
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a35t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/main_motor_top_pwm.bit} [get_hw_devices xc7a35t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported soft debug core(s) in it. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:42:35 PM CEST
+dismissDialog("Program Device"); // bk (Program Device Progress)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:43:15 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:43:55 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:44:35 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:45:15 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:45:55 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:46:35 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:47:15 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:47:55 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 85 MB. Current time: 5/28/26, 2:48:35 PM CEST
+// Elapsed time: 395 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree) - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:49:15 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:49:56 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:50:36 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:51:17 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:51:57 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:52:38 PM CEST
+// Elapsed time: 240 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 184, 42); // ae (main_motor_top_pwm.vhd)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd)]", 2); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectCodeEditor("main_motor_top_pwm.vhd", 190, 139); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:53:18 PM CEST
+// Elapsed time: 28 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "stepper_motor_ctrl.vhd", 1); // m (PlanAheadTabBaseWorkspace_JideTabbedPane)
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "stepper_motor_ctrl.vhd", 1, false, true); // m (PlanAheadTabBaseWorkspace_JideTabbedPane) - Double Click
+maximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // K (PAResourceOtoP.PAViews_BASE_WORKSPACE, PlanAheadTabBaseWorkspace)
+selectCodeEditor("stepper_motor_ctrl.vhd", 759, 119); // ae (stepper_motor_ctrl.vhd)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "stepper_motor_ctrl.vhd", 1); // m (PlanAheadTabBaseWorkspace_JideTabbedPane)
+selectTab((HResource) null, "PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "stepper_motor_ctrl.vhd", 1, false, true); // m (PlanAheadTabBaseWorkspace_JideTabbedPane) - Double Click
+unmaximizeView(PAResourceOtoP.PAViews_BASE_WORKSPACE, "BaseWorkspace"); // K (PAResourceOtoP.PAViews_BASE_WORKSPACE, PlanAheadTabBaseWorkspace)
+selectCodeEditor("stepper_motor_ctrl.vhd", 246, 82); // ae (stepper_motor_ctrl.vhd)
+typeControlKey((HResource) null, "stepper_motor_ctrl.vhd", 'c'); // ae (stepper_motor_ctrl.vhd)
+selectCodeEditor("stepper_motor_ctrl.vhd", 246, 82); // ae (stepper_motor_ctrl.vhd)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "hc020k.vhd", 2); // m (PlanAheadTabBaseWorkspace_JideTabbedPane)
+selectCodeEditor("hc020k.vhd", 289, 146); // ae (hc020k.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 86 MB. Current time: 5/28/26, 2:53:58 PM CEST
+// Elapsed time: 30 seconds
+selectCodeEditor("hc020k.vhd", 196, 207); // ae (hc020k.vhd)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 7, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 7, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 7, true, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click - Node
+selectCodeEditor("dc_driver_pwm.vhd", 399, 166); // ae (dc_driver_pwm.vhd)
+typeControlKey((HResource) null, "dc_driver_pwm.vhd", 'c'); // ae (dc_driver_pwm.vhd)
+selectCodeEditor("dc_driver_pwm.vhd", 399, 166); // ae (dc_driver_pwm.vhd)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd), U_PWM : pwm_generator(rtl) (pwm_generator.vhd)]", 8, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd), U_PWM : pwm_generator(rtl) (pwm_generator.vhd)]", 8, false); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd), U_PWM : pwm_generator(rtl) (pwm_generator.vhd)]", 8, false, false, false, false, false, true); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE) - Double Click
+selectCodeEditor("pwm_generator.vhd", 158, 183); // ae (pwm_generator.vhd)
+typeControlKey((HResource) null, "pwm_generator.vhd", 'c'); // ae (pwm_generator.vhd)
+selectCodeEditor("pwm_generator.vhd", 158, 183); // ae (pwm_generator.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:54:39 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:55:19 PM CEST
+// Elapsed time: 55 seconds
+selectCodeEditor("pwm_generator.vhd", 272, 120); // ae (pwm_generator.vhd)
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // H (PAResourceOtoP.PAViews_CODE, PlanAheadTabCode)
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "main_motor_top_pwm.vhd", 0); // m (PlanAheadTabBaseWorkspace_JideTabbedPane)
+selectCodeEditor("main_motor_top_pwm.vhd", 256, 151); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:55:59 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:56:40 PM CEST
+// Elapsed time: 66 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 66, 302); // ae (main_motor_top_pwm.vhd)
+// Elapsed time: 13 seconds
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'v'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 328, 199); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 41m:04s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 41m:06s
+// Elapsed time: 10 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectCodeEditor("main_motor_top_pwm.vhd", 1, 336); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 270, 328); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 41m:22s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 41m:24s
+// Tcl Message: ERROR: [Common 17-180] Spawn failed: The operation completed successfully.  
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:57:20 PM CEST
+selectCodeEditor("main_motor_top_pwm.vhd", 215, 340); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'c'); // ae (main_motor_top_pwm.vhd)
+// Elapsed time: 23 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 243, 451); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'v'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 244, 306); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 296, 301); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 41m:58s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 42m:00s
+selectCodeEditor("main_motor_top_pwm.vhd", 351, 210); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:58:01 PM CEST
+selectButton((HResource) null, "RDIResource.FrameControlsPanel_MINIMIZE_Properties"); // P.a (RDIResource.FrameControlsPanel_MINIMIZE_Properties)
+selectCodeEditor("main_motor_top_pwm.vhd", 363, 373); // ae (main_motor_top_pwm.vhd)
+selectButton((HResource) null, "RDIResource.FrameControlsPanel_MINIMIZE_Reports"); // P.a (RDIResource.FrameControlsPanel_MINIMIZE_Reports)
+selectCodeEditor("main_motor_top_pwm.vhd", 131, 463); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 52, 246); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 35, 236); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 131, 508); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 108, 528); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'c'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 449, 240); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 42m:38s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 42m:40s
+setText(RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, "compon"); // d.c (RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX)
+selectCodeEditor("main_motor_top_pwm.vhd", 587, 198); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 255, 602); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:58:41 PM CEST
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'v'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 375, 468); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 60, 446); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 24, 465); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 31, 469); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 60, 481); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 61, 503); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 58, 502); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 27, 519); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 26, 530); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 57, 558); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 60, 572); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 57, 569); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 58, 587); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 54, 602); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 52, 620); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 56, 626); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 58, 633); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 57, 649); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 27, 668); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 3, 696); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 378, 341); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 2:59:21 PM CEST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 43m:28s
+// [GUI Memory]: 166 MB (+748kb) [00:43:48]
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 43m:30s
+selectCodeEditor("main_motor_top_pwm.vhd", 503, 403); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 568, 419); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 398, 157); // ae (main_motor_top_pwm.vhd)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 7); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+selectCodeEditor("main_motor_top_pwm.vhd", 368, 324); // ae (main_motor_top_pwm.vhd)
+// Elapsed time: 10 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 608, 362); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 273, 497); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 286, 485); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'v'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 1, 525); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 1, 538); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 0, 557); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 3, 557, false, false, false, false, true); // ae (main_motor_top_pwm.vhd) - Double Click
+selectCodeEditor("main_motor_top_pwm.vhd", 1, 557); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 608, 610); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:00:01 PM CEST
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 44m:06s
+// TclEventType: DG_GRAPH_GENERATED
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 44m:08s
+// Tcl Message: ERROR: [Common 17-180] Spawn failed: The operation completed successfully.  
+// Elapsed time: 29 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 31, 529); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:00:42 PM CEST
+// Elapsed time: 13 seconds
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'v'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 62, 555); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 213, 568); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 120, 420); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 58, 419); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 653, 419); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 628, 466); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 352, 403); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 366, 399); // ae (main_motor_top_pwm.vhd)
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("main_motor_top_pwm.vhd", 366, 399); // ae (main_motor_top_pwm.vhd)
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 45m:14s
+// Tcl Message: ERROR: [Common 17-180] Spawn failed: The operation completed successfully.  
+// TclEventType: DG_GRAPH_GENERATED
+selectButton(RDIResource.HToolBar_SETTINGS, "Sources_settings"); // w (RDIResource.HToolBar_SETTINGS, Sources_settings): TRUE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 45m:17s
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 45m:18s
+// TclEventType: DG_GRAPH_GENERATED
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd), DC_MOTOR : dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 3); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, main_motor_top_pwm(rtl) (main_motor_top_pwm.vhd), DC_MOTOR : dc_driver_pwm(rtl) (dc_driver_pwm.vhd)]", 3); // E (PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE)
+// Elapsed Time for: 'PAResourceItoN.MsgLongTask_MESSAGE_LONG_TASK/M.f': 45m:20s
+selectCodeEditor("main_motor_top_pwm.vhd", 273, 182); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 88 MB. Current time: 5/28/26, 3:01:23 PM CEST
+selectCodeEditor("main_motor_top_pwm.vhd", 84, 253); // ae (main_motor_top_pwm.vhd)
+// Elapsed time: 23 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 353, 512); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 125, 524); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 375, 445); // ae (main_motor_top_pwm.vhd)
+typeControlKey((HResource) null, "main_motor_top_pwm.vhd", 'c'); // ae (main_motor_top_pwm.vhd)
+selectCodeEditor("main_motor_top_pwm.vhd", 375, 445); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 88 MB. Current time: 5/28/26, 3:02:03 PM CEST
+// Elapsed time: 38 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 283, 346); // ae (main_motor_top_pwm.vhd)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 15, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.srcs/utils_1/imports/synth_1/main_motor_top_pwm.dcp with file C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/synth_1/main_motor_top_pwm.dcp 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:02:37 PM CEST
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: launch_runs synth_1 -jobs 8 
+// Tcl Message: [Thu May 28 15:02:38 2026] Launched synth_1... Run output will be captured here: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bk (Starting Design Runs Progress)
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:02:43 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:03:23 PM CEST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:04:04 PM CEST
+// Elapsed time: 86 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 18, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:04:04 PM CEST
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: launch_runs impl_1 -jobs 8 
+// Tcl Message: [Thu May 28 15:04:04 2026] Launched impl_1... Run output will be captured here: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bk (Starting Design Runs Progress)
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 87 MB. Current time: 5/28/26, 3:04:44 PM CEST
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 88 MB. Current time: 5/28/26, 3:05:24 PM CEST
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 88 MB. Current time: 5/28/26, 3:06:04 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 88 MB. Current time: 5/28/26, 3:06:44 PM CEST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 180 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Open Target]", 23, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HW_TARGET
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Program Device]", 24, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectMenuItem((HResource) null, "xc7a35t_0"); // ap (xc7a35t_0)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program", "Program Device"); // f (PAResourceOtoP.ProgramFpgaDialog_PROGRAM, RDIResource.BaseDialog_OK)
+// HOptionPane Error: 'The file 'C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/ impl_1/main_motor_top_pwm.bit' does not exist. Please specify a valid file name. (Invalid File Name)'
+selectButton("OptionPane.button", "OK", "Invalid File Name"); // JButton (OptionPane.button)
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program", "Program Device"); // f (PAResourceOtoP.ProgramFpgaDialog_PROGRAM, RDIResource.BaseDialog_OK)
+selectButton("OptionPane.button", "OK", "Invalid File Name"); // JButton (OptionPane.button)
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel", "Program Device"); // f (RDIResource.BaseDialog_CANCEL)
+// 'D' command handler elapsed time: 14 seconds
+dismissDialog("Program Device"); // aT (dialog6)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 89 MB. Current time: 5/28/26, 3:07:24 PM CEST
+selectButton(PAResourceOtoP.ProgramDebugTab_REFRESH_DEVICE, "Refresh device"); // h (PAResourceOtoP.ProgramDebugTab_REFRESH_DEVICE)
+selectMenuItem((HResource) null, "xc7a35t_0"); // ap (xc7a35t_0)
+// Run Command: PAResourceCommand.PACommandNames_REFRESH_DEVICE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1435] Device xc7a35t (JTAG device index = 0) is not programmed (DONE status = 0). 
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Open Target]", 23, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HW_TARGET
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Program Device]", 24, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectMenuItem((HResource) null, "xc7a35t_0"); // ap (xc7a35t_0)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program", "Program Device"); // f (PAResourceOtoP.ProgramFpgaDialog_PROGRAM, RDIResource.BaseDialog_OK)
+// HOptionPane Error: 'The file 'C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/ impl_1/main_motor_top_pwm.bit' does not exist. Please specify a valid file name. (Invalid File Name)'
+selectButton("OptionPane.button", "OK", "Invalid File Name"); // JButton (OptionPane.button)
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel", "Program Device"); // f (RDIResource.BaseDialog_CANCEL)
+dismissDialog("Program Device"); // aT (dialog7)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 21, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:07:35 PM CEST
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: PAUSE_COMPOSITE_FILE_CHANGE_GUI
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 8 
+// Tcl Message: [Thu May 28 15:07:35 2026] Launched impl_1... Run output will be captured here: C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:08:04 PM CEST
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:08:45 PM CEST
+// Elapsed time: 73 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK", "Bitstream Generation Completed"); // f (RDIResource.BaseDialog_OK)
+// Run Command: PAResourceCommand.PACommandNames_REPORTS_WINDOW
+dismissDialog("Bitstream Generation Completed"); // W.a (dialog8)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager, Program Device]", 24, false); // g (PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, Flow Navigator Tree)
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectMenuItem((HResource) null, "xc7a35t_0"); // ap (xc7a35t_0)
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl (Dont Echo) Command: 'rdi::info_commands get_hw_probes'
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program", "Program Device"); // f (PAResourceOtoP.ProgramFpgaDialog_PROGRAM, RDIResource.BaseDialog_OK)
+// TclEventType: HW_DEVICE_CHANGE
+dismissDialog("Program Device"); // aT (dialog9)
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a35t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/Gabriel Liberato/Gearbox_Project/Gabriel_Files/Gearbox_Project.runs/impl_1/main_motor_top_pwm.bit} [get_hw_devices xc7a35t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a35t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported soft debug core(s) in it. 
+dismissDialog("Program Device"); // bk (Program Device Progress)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:09:25 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:10:05 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:10:45 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:11:25 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:12:05 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:12:45 PM CEST
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:13:26 PM CEST
+// Elapsed time: 305 seconds
+selectCodeEditor("main_motor_top_pwm.vhd", 421, 233); // ae (main_motor_top_pwm.vhd)
+// HMemoryUtils.trashcanNow. Engine heap size: 1,325 MB. GUI used memory: 90 MB. Current time: 5/28/26, 3:14:06 PM CEST
