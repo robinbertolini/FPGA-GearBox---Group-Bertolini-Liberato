@@ -8,3 +8,63 @@
     <Process Command="vivado.bat" Owner="robin" Host="PCBOBIN" Pid="6780" HostCore="20" HostMemory="016788566016">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="16272" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="18240" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="15208" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="12060" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="2888" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="11304" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="17440" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="13368" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="12228" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="8588" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="3000" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Gabriel Liberato" Host="DESKTOP-UFF887S" Pid="15548" HostCore="16" HostMemory="033699569664">
+    </Process>
+</ProcessHandle>
