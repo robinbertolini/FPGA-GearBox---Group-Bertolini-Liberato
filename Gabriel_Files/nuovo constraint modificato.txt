@@ -1,0 +1,115 @@
+## This file is a customized .xdc for the Basys3 rev B board
+## Physical pins from Schematic (Codice 1) + Port Names from Codice 2
+
+############################################################
+# CLOCK (100MHz)
+############################################################
+set_property PACKAGE_PIN W5 [get_ports clk]							
+	set_property IOSTANDARD LVCMOS33 [get_ports clk]
+	create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports clk]
+ 
+############################################################
+# SWITCHES
+############################################################
+## Switch 14 -> Comando Schermo
+set_property PACKAGE_PIN T1 [get_ports {sw[14]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sw[14]}]
+## Switch 15 -> Attivazione Auto-Regolazione
+set_property PACKAGE_PIN R2 [get_ports {sw[15]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {sw[15]}]
+
+############################################################
+# 7-SEGMENT DISPLAY
+############################################################
+set_property PACKAGE_PIN U2 [get_ports {an[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {an[0]}]
+set_property PACKAGE_PIN U4 [get_ports {an[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {an[1]}]
+set_property PACKAGE_PIN V4 [get_ports {an[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {an[2]}]
+set_property PACKAGE_PIN W4 [get_ports {an[3]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
+
+set_property PACKAGE_PIN W7 [get_ports {seg[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[0]}]
+set_property PACKAGE_PIN W6 [get_ports {seg[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[1]}]
+set_property PACKAGE_PIN U8 [get_ports {seg[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[2]}]
+set_property PACKAGE_PIN V8 [get_ports {seg[3]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[3]}]
+set_property PACKAGE_PIN U5 [get_ports {seg[4]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[4]}]
+set_property PACKAGE_PIN V5 [get_ports {seg[5]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[5]}]
+set_property PACKAGE_PIN U7 [get_ports {seg[6]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {seg[6]}]
+
+set_property PACKAGE_PIN V7 [get_ports dp]							
+	set_property IOSTANDARD LVCMOS33 [get_ports dp]
+
+############################################################
+# BUTTONS
+############################################################
+set_property PACKAGE_PIN U18 [get_ports btnC]						
+	set_property IOSTANDARD LVCMOS33 [get_ports btnC]
+set_property PACKAGE_PIN T18 [get_ports btnU]						
+	set_property IOSTANDARD LVCMOS33 [get_ports btnU]
+set_property PACKAGE_PIN W19 [get_ports btnL]						
+	set_property IOSTANDARD LVCMOS33 [get_ports btnL]
+set_property PACKAGE_PIN T17 [get_ports btnR]						
+	set_property IOSTANDARD LVCMOS33 [get_ports btnR]
+set_property PACKAGE_PIN U17 [get_ports btnD]						
+	set_property IOSTANDARD LVCMOS33 [get_ports btnD]
+
+############################################################
+# STEPPER 1 (JB header - physical pins from JA top)
+############################################################
+## U2 IN1 -> FPGA pin J1
+set_property PACKAGE_PIN J1 [get_ports {JB[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB[0]}]
+## U2 IN2 -> FPGA pin L2
+set_property PACKAGE_PIN L2 [get_ports {JB[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB[1]}]
+## U2 IN3 -> FPGA pin J2
+set_property PACKAGE_PIN J2 [get_ports {JB[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB[2]}]
+## U2 IN4 -> FPGA pin G2
+set_property PACKAGE_PIN G2 [get_ports {JB[3]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JB[3]}]
+
+############################################################
+# STEPPER 2 (JC header - physical pins from JA bot & JXADC1)
+############################################################
+## U1 IN1 -> FPGA pin K2
+set_property PACKAGE_PIN K2 [get_ports {JC[0]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC[0]}]
+## U1 IN2 -> FPGA pin H2
+set_property PACKAGE_PIN H2 [get_ports {JC[1]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC[1]}]
+## U1 IN3 -> FPGA pin G3
+set_property PACKAGE_PIN G3 [get_ports {JC[2]}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC[2]}]
+## U1 IN4 -> FPGA pin J3 (JXADC1)
+set_property PACKAGE_PIN J3 [get_ports {JC[3]}]				
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC[3]}]
+
+############################################################
+# HC-020K SPEED SENSORS (Physical pins from JC1 & JC2)
+############################################################
+## Sensore 1 su U5 OUT -> FPGA pin K17
+set_property PACKAGE_PIN K17 [get_ports sensor_in1]					
+	set_property IOSTANDARD LVCMOS33 [get_ports sensor_in1]
+## Sensore 2 su U6 OUT -> FPGA pin M18
+set_property PACKAGE_PIN M18 [get_ports sensor_in2]					
+	set_property IOSTANDARD LVCMOS33 [get_ports sensor_in2]
+
+############################################################
+# DC MOTOR (JA header - physical pins from JXADC2 & JXADC3)
+############################################################
+## U3 IN1 -> FPGA pin L3
+set_property PACKAGE_PIN L3 [get_ports {JA[2]}]				
+	set_property IOSTANDARD LVCMOS33 [get_ports {JA[2]}]
+## U3 IN2 -> FPGA pin M2
+set_property PACKAGE_PIN M2 [get_ports {JA[3]}]				
+	set_property IOSTANDARD LVCMOS33 [get_ports {JA[3]}]

@@ -99,9 +99,22 @@ set_property PACKAGE_PIN N1 [get_ports {JC[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {JC[3]}]
 
 ############################################################
+# HC-020K SPEED SENSORS (JXADC header - digital mode)
+############################################################
+
+############################################################
+# HC-020K SPEED SENSORS (JXADC header - digital mode)
+############################################################
+# Sensore 1 su JXADC pin 1 → FPGA pin J2
+set_property PACKAGE_PIN J2 [get_ports sensor_in1]
+set_property IOSTANDARD LVCMOS33 [get_ports sensor_in1]
+
+# Sensore 2 su JXADC pin 3 → FPGA pin K2
+set_property PACKAGE_PIN K2 [get_ports sensor_in2]
+set_property IOSTANDARD LVCMOS33 [get_ports sensor_in2]
+############################################################
 # 7-SEGMENT DISPLAY
 ############################################################
-# Anodes
 set_property PACKAGE_PIN U2  [get_ports {an[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {an[0]}]
 set_property PACKAGE_PIN U4  [get_ports {an[1]}]
@@ -111,7 +124,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports {an[2]}]
 set_property PACKAGE_PIN W4  [get_ports {an[3]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
 
-# Segments CA..CG
 set_property PACKAGE_PIN W7  [get_ports {seg[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {seg[0]}]
 set_property PACKAGE_PIN W6  [get_ports {seg[1]}]
@@ -127,6 +139,5 @@ set_property IOSTANDARD LVCMOS33 [get_ports {seg[5]}]
 set_property PACKAGE_PIN U7  [get_ports {seg[6]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {seg[6]}]
 
-# Decimal point (off)
 set_property PACKAGE_PIN V7  [get_ports dp]
 set_property IOSTANDARD LVCMOS33 [get_ports dp]
