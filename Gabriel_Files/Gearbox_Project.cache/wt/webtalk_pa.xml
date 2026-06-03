@@ -3,10 +3,17 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
+<<<<<<< Updated upstream
 <application name="pa" timeStamp="Wed May 27 09:14:06 2026">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="1493085f7c084f6cbe8aaaf0daae498d" type="ProjectID"/>
 <property name="ProjectIteration" value="124" type="ProjectIteration"/>
+=======
+<application name="pa" timeStamp="Fri May 29 15:20:31 2026">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="1493085f7c084f6cbe8aaaf0daae498d" type="ProjectID"/>
+<property name="ProjectIteration" value="141" type="ProjectIteration"/>
+>>>>>>> Stashed changes
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">

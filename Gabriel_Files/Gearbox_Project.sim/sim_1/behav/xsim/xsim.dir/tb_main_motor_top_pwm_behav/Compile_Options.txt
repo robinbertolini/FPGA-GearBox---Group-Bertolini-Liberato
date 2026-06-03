@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "secureip" --snapshot "tb_main_motor_top_pwm_behav" "xil_defaultlib.tb_main_motor_top_pwm" -log "elaborate.log" 

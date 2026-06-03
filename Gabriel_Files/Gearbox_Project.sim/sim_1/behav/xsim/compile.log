@@ -1,2 +1,9 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/testbench_project.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'main_motor_top_pwm_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sources_1/new/main_motor_top_pwm.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'main_motor_top_pwm'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/tb_main_motor_top_pwm.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_main_motor_top_pwm'
+ERROR: [VRFC 10-719] formal port/generic <simulation> is not declared in <main_motor_top_pwm> [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/tb_main_motor_top_pwm.vhd:42]
+ERROR: [VRFC 10-719] formal port/generic <jxadc> is not declared in <main_motor_top_pwm> [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/tb_main_motor_top_pwm.vhd:53]
+ERROR: [VRFC 10-3353] formal port 'sensor_in1' has no actual or default value [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/tb_main_motor_top_pwm.vhd:41]
+ERROR: [VRFC 10-9458] unit 'test' is ignored due to previous errors [C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/tb_main_motor_top_pwm.vhd:8]
+INFO: [VRFC 10-8704] VHDL file 'C:/Users/robin/Documents/GitHub/FPGA-GearBox---Group-Bertolini-Liberato/Gabriel_Files/Gearbox_Project.srcs/sim_1/new/tb_main_motor_top_pwm.vhd' is ignored due to errors
