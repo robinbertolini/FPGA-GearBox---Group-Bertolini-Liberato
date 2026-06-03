@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 entity stepper_position_controller is
     generic (
         CLK_FREQ_HZ        : positive := 100_000_000;
-        HOMING_DIR         : std_logic := '1';  -- '1' = calibra verso il muro
-        POST_HOMING_OFFSET : integer   := 0     -- passi da fare indietro dopo il muro
+        HOMING_DIR         : std_logic := '1';  -- '1' =    =>wall
+        POST_HOMING_OFFSET : integer   := 0     -- steps <=wall
     );
     port (
         clk               : in  std_logic;

@@ -35,9 +35,7 @@ architecture rtl of hc020k_speed_sensor is
     -- Timer
     signal cycle_cnt    : integer range 0 to WINDOW_CYCLES := 0;
 begin
-    ----------------------------------------------------------------------------
-    -- Edge detection (rising edge of sensor_in)
-    ----------------------------------------------------------------------------
+
     process(clk)
     begin
         if rising_edge(clk) then

@@ -5,14 +5,14 @@ use ieee.numeric_std.all;
 entity hc020k is
     generic (
         CLK_FREQ_HZ    : positive := 100_000_000;  -- 100 MHz
-        MEASUREMENT_MS : positive := 100;          -- finestra 100 ms
-        SLOTS_PER_REV  : positive := 20            -- fessure disco
+        MEASUREMENT_MS : positive := 100;          -- window of 100 ms
+        SLOTS_PER_REV  : positive := 20            
     );
     port (
         clk       : in  std_logic;
         rst       : in  std_logic;
-        sensor_in : in  std_logic;                 -- segnale digitale dal modulo HC-020K
-        rpm       : out std_logic_vector(15 downto 0);  -- giri/min
+        sensor_in : in  std_logic;                 -- digital signal for HC-020K
+        rpm       : out std_logic_vector(15 downto 0);  -- routes/min
         valid     : out std_logic                       -- '1' per un ciclo quando rpm è aggiornato
     );
 end entity;

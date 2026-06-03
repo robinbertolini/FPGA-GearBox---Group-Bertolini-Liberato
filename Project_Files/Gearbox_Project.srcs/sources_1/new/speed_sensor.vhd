@@ -5,13 +5,13 @@ use ieee.numeric_std.all;
 entity speed_sensor is
     generic (
         CLK_FREQ_HZ : positive := 100_000_000;   -- 100 MHz
-        GATE_TIME_S : positive := 1              -- 1 secondo
+        GATE_TIME_S : positive := 1              -- 1 second
     );
     port (
         clk      : in  std_logic;
         rst      : in  std_logic;
-        sensor   : in  std_logic;                -- ingresso dal sensore HC-020K
-        speed    : out unsigned(13 downto 0)     -- impulsi/secondo (max 16383)
+        sensor   : in  std_logic;                -- ingresso  HC-020K
+        speed    : out unsigned(13 downto 0)     -- impulse/second (max 16383)
     );
 end entity;
 

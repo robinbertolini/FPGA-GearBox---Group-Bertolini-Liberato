@@ -13,11 +13,11 @@ entity dc_driver_pwm is
 
         enable : in std_logic;
 
-        ------------------------------------------------------------------------
-        -- FIXED DIRECTION
+
+        -- DIRECTION
         -- 0 = reverse
         -- 1 = forward
-        ------------------------------------------------------------------------
+
         fixed_dir : in std_logic;
 
         duty_cycle : in unsigned(7 downto 0);

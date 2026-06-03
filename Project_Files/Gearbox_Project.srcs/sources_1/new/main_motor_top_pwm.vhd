@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity main_motor_top_pwm is
     Port (
         clk         : in  STD_LOGIC;
-        btnC        : in  STD_LOGIC;  -- Neutral (folle)
+        btnC        : in  STD_LOGIC;  -- Neutral 
         btnU        : in  STD_LOGIC;  -- Gear 1 (arrow up)
         btnL        : in  STD_LOGIC;  -- Gear 2 (arrow left)
         btnR        : in  STD_LOGIC;  -- Gear 4 (arrow right)
@@ -28,9 +28,9 @@ architecture rtl of main_motor_top_pwm is
     ----------------------------------------------------------------------------
     -- PARAMETERS SET SPERIMENTALLY
     ----------------------------------------------------------------------------
-    constant POST_HOMING_OFFSET : integer := 550;   -- rientro dopo il muro (neutro)
+    constant POST_HOMING_OFFSET : integer := 550;   -- going back from wall => Neutral
     constant STEPS_X            : integer := POST_HOMING_OFFSET;
-    constant GEAR_STEP          : integer := 750;   -- passo simmetrico per le marce
+    constant GEAR_STEP          : integer := 750;   -- symmetric for gears change
 
     constant GLOBAL_CALIB_DIR : std_logic := '1';
 
@@ -70,9 +70,7 @@ architecture rtl of main_motor_top_pwm is
         );
     end component;
 
-    ----------------------------------------------------------------------------
-    -- SEGNALI INTERNI
-    ----------------------------------------------------------------------------
+
     signal s1_calibrated, s2_calibrated : std_logic;
     signal s1_busy, s2_busy : std_logic;
     signal s1_target, s2_target : integer := 0;
@@ -85,7 +83,7 @@ architecture rtl of main_motor_top_pwm is
     signal valid1, valid2 : std_logic;
     signal rpm1_latched, rpm2_latched : std_logic_vector(15 downto 0) := (others => '0');
     signal selected_rpm : std_logic_vector(15 downto 0);
-    signal any_valid : std_logic;  -- '1' se almeno un sensore ha dato un valore valido
+    signal any_valid : std_logic;  -- '1' if any sensor has a valid value
 
     -- Display
     signal digit_scan_counter : integer range 0 to 99999 := 0;
@@ -202,7 +200,7 @@ begin
     any_valid <= valid1 or valid2;
 
     ----------------------------------------------------------------------------
-    -- SELEZIONE MARCIA (IDENTICA a prima)
+    -- GEEAR SELECTION
     ----------------------------------------------------------------------------
     process(clk)
     begin
@@ -219,7 +217,7 @@ begin
     end process;
 
     ----------------------------------------------------------------------------
-    -- CALCOLO TARGET (IDENTICO a prima)
+    -- TRGET CALULATION (as before)
     ----------------------------------------------------------------------------
     process(clk)
     begin
@@ -251,8 +249,8 @@ begin
 
     ----------------------------------------------------------------------------
     -- DISPLAY 7 SEGMENTI
-    -- an[0] -> sempre marcia
-    -- an[3],an[2],an[1] -> RPM selezionato (0-999) oppure spenti se sensori non attivi
+    -- an[0] -> JUST SHOW CURRENT GEAR
+    -- an[3],an[2],an[1] -> RPM selected (0-999) or off if sensor not active
     ----------------------------------------------------------------------------
     process(clk)
     begin
